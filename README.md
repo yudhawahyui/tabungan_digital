@@ -1,4 +1,4 @@
-# tabungan_digital
+# Tabungan Digital
 
 Bismillahirrahmanirrahim.
 
