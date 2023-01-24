@@ -1,16 +1,12 @@
 # tabungan_digital
 
-A new Flutter project.
+Bismillahirrahmanirrahim.
 
-## Getting Started
+>Tabungan digital bertujuan untuk menyeselsaikan masalah dalam kesulitan mencatat tabungan, kamu bisa mencatat tabungan kamu dengan mudah, menentukan target tabungan kamu dan melihat pencapaian atas apa yang kamu tabung!
 
-This project is a starting point for a Flutter application.
+Pemrograman Internet Lanjutan Semester 5
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Nama Kelompok
+- [Mochammad Haikal Alfandi Subagyo](https://github.com/GrimsAlphaDev) - 20200121021 - SI Enterprise 1/5
+- [Yudha Wahyu Iskandar](https://github.com/yudhawahyui) - 20200121014 - SI Enterprise 1/5
+- Silviana Devi - 2020107008 -  SI E Bisnis 1/5`
