@@ -7,6 +7,6 @@ Bismillahirrahmanirrahim.
 Pemrograman Internet Lanjutan Semester 5
 
 Nama Kelompok
-- Mochammad Haikal Alfandi Subagyo - 20200121021 - SI Enterprise 1/5 [https://github.com/GrimsAlphaDev]
-- Yudha Wahyu Iskandar - 20200121014 - SI Enterprise 1/5 [https://github.com/yudhawahyui]
+- [Mochammad Haikal Alfandi Subagyo - 20200121021 - SI Enterprise 1/5] (https://github.com/GrimsAlphaDev)
+- [Yudha Wahyu Iskandar - 20200121014 - SI Enterprise 1/5] (https://github.com/yudhawahyui)
 - Silviana Devi - 2020107008 -  SI E Bisnis 1/5`
