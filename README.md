@@ -2,6 +2,8 @@
 
 Bismillahirrahmanirrahim.
 
+/tabungan_digital_small.png
+
 >Tabungan digital bertujuan untuk menyeselsaikan masalah dalam kesulitan mencatat tabungan, kamu bisa mencatat tabungan kamu dengan mudah, menentukan target tabungan kamu dan melihat pencapaian atas apa yang kamu tabung!
 
 Pemrograman Internet Lanjutan Semester 5
