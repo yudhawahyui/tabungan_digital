@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:tabungan_digital/app/utils/widget/register_page_widget/register_page_widget_2.dart';
 
 import '../controllers/register_page_2_controller.dart';
 
@@ -9,15 +10,9 @@ class RegisterPage2View extends GetView<RegisterPage2Controller> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('RegisterPage2View'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'RegisterPage2View is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: registerPage2(),
       ),
     );
   }

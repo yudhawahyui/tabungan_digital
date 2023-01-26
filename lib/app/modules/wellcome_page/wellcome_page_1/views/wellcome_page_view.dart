@@ -1,9 +1,8 @@
-import 'package:drop_shadow/drop_shadow.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
-import 'package:tabungan_digital/app/utils/widget/wellcome_page/wellcome_slide_1.dart';
+import 'package:tabungan_digital/app/utils/widget/wellcome_page_widget/wellcome_slide_widget_1.dart';
 
 import '../controllers/wellcome_page_controller.dart';
 
