@@ -128,6 +128,7 @@ class loginPage extends StatelessWidget {
                 child: TextButton(
                   onPressed: () {
                     // Function Here
+                    Get.toNamed('/detail-tabungan-page');
                   },
                   child: const Text(
                     'Login',
