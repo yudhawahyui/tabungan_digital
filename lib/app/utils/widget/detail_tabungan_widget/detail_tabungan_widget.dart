@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
+import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/list_nabung.dart';
+import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/modal_ambil_tabungan.dart';
 import 'package:unicons/unicons.dart';
 
 class DetailTabunganWidget extends StatelessWidget {
@@ -17,8 +19,8 @@ class DetailTabunganWidget extends StatelessWidget {
       floatingActionButton: ExpandableFab(
         expandedFabSize: ExpandableFabSize.regular,
         collapsedFabSize: ExpandableFabSize.regular,
+        duration: const Duration(milliseconds: 125),
         key: key,
-        duration: const Duration(milliseconds: 250),
         distance: 60,
         type: ExpandableFabType.up,
         foregroundColor: AppColors.white,
@@ -29,57 +31,96 @@ class DetailTabunganWidget extends StatelessWidget {
           backgroundColor: AppColors.primaryBg,
         ),
         overlayStyle: ExpandableFabOverlayStyle(
-          blur: 1,
+          blur: 1.5,
         ),
         children: [
-          Container(
-            decoration: BoxDecoration(
-              color: AppColors.primaryBg,
-              borderRadius: BorderRadius.circular(5),
+          // Button Tambah Tabungan
+          TextButton.icon(
+            label: const Text(
+              'Tambah Tabungan',
             ),
-            child: TextButton(
-              child: const Text(
-                "Menabung",
-                style: TextStyle(color: AppColors.white),
+            onPressed: () {
+              // Function Here
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return const modalTambahTabungan();
+                },
+              );
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.all(12),
+              fixedSize: const Size(190, 50),
+              foregroundColor: AppColors.white,
+              backgroundColor: AppColors.primaryBg,
+              alignment: AlignmentDirectional.centerStart,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
               ),
-              onPressed: () {},
             ),
+            icon: const Icon(UniconsLine.money_insert),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: AppColors.primaryBg,
-              borderRadius: BorderRadius.circular(5),
+          //button ambil tabungan
+          TextButton.icon(
+            label: const Text(
+              'Ambil Tabungan',
             ),
-            child: TextButton(
-              child: const Text(
-                "Ambil Tabungan",
-                style: TextStyle(color: AppColors.white),
+            onPressed: () {
+              // Function Here
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return const modalAmbilTabungan();
+                },
+              );
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.all(12),
+              fixedSize: const Size(190, 50),
+              alignment: AlignmentDirectional.centerStart,
+              foregroundColor: AppColors.white,
+              backgroundColor: AppColors.primaryBg,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
               ),
-              onPressed: () {},
             ),
+            icon: const Icon(UniconsLine.money_withdraw),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: AppColors.primaryBg,
-              borderRadius: BorderRadius.circular(5),
+          // Button Hapus Tabungan
+          TextButton.icon(
+            label: const Text(
+              'Hapus Tabungan',
             ),
-            child: TextButton(
-              child: const Text(
-                "Hapus Tabungan",
-                style: TextStyle(color: AppColors.white),
+            onPressed: () {
+              // Function Here
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return const modalHapusTabungan();
+                },
+              );
+            },
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.all(12),
+              alignment: AlignmentDirectional.centerStart,
+              fixedSize: const Size(190, 50),
+              foregroundColor: AppColors.white,
+              backgroundColor: AppColors.primaryBg,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
               ),
-              onPressed: () {},
             ),
+            icon: const Icon(UniconsLine.trash_alt),
           ),
         ],
       ),
+      // End FAB
       // Body
       body: Padding(
         padding:
             const EdgeInsets.only(left: 32, right: 32, top: 16, bottom: 16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
               children: [
@@ -309,6 +350,12 @@ class DetailTabunganWidget extends StatelessWidget {
                 ),
               ],
             ),
+            // History Tabungan
+            const Text(
+              'History Tabungan',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            historyNabung(),
           ],
         ),
       ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/detail_tabungan_widget.dart';
-import 'package:unicons/unicons.dart';
 
 import '../controllers/detail_tabungan_page_controller.dart';
 
