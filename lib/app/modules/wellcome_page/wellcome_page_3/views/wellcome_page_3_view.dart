@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
-import 'package:tabungan_digital/app/utils/widget/wellcome_page_widget/wellcome_slide_widget_3.dart';
+import 'package:tabungan_digital/app/utils/widget/wellcome_page_widget/wellcome_page_widget.dart';
 
 import '../controllers/wellcome_page_3_controller.dart';
 
