@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
+import 'package:tabungan_digital/pages/auth.dart';
 
 class registerPage1 extends StatelessWidget {
   const registerPage1({
@@ -87,6 +88,9 @@ class registerPage2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var emailController = TextEditingController();
+    var passwordController = TextEditingController();
+
     return Padding(
       padding: const EdgeInsets.all(32),
       child: Column(
@@ -117,13 +121,14 @@ class registerPage2 extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text('Email'),
                     SizedBox(
                       height: 8,
                     ),
                     TextField(
-                      obscureText: true,
+                      controller: emailController,
+                      obscureText: false,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Masukkan Email',
@@ -139,12 +144,13 @@ class registerPage2 extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text('Password'),
                     SizedBox(
                       height: 8,
                     ),
                     TextField(
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -205,6 +211,9 @@ class registerPage2 extends StatelessWidget {
                 child: TextButton(
                   onPressed: () {
                     // Function Here
+                    AuthController.instance.register(
+                        emailController.text.trim(),
+                        passwordController.text.trim());
                   },
                   child: const Text(
                     'Daftar',
