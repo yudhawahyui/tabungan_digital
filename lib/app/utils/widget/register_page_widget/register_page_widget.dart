@@ -117,14 +117,19 @@ class registerPage2 extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Email'),
-                    SizedBox(
+                  children: [
+                    const Text('Email'),
+                    const SizedBox(
                       height: 8,
                     ),
-                    TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
+                    TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Masukkan Email',
                       ),
@@ -154,46 +159,6 @@ class registerPage2 extends StatelessWidget {
                   ],
                 ),
               ),
-
-              // If Form Email & Password is not valid
-
-              // State Email & Password must be valid!
-              // Padding(
-              //   padding: const EdgeInsets.only(bottom: 16),
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.start,
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: const [
-              //       Text(
-              //         'Email anda salah! Masukkan email yang valid!',
-              //         style: TextStyle(color: AppColors.danger, fontSize: 12),
-              //       ),
-              //       Text(
-              //         'Password  harus mengandung huruf dan angka!',
-              //         style: TextStyle(color: AppColors.danger, fontSize: 12),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-
-              // State Password must be valid!
-              // Padding(
-              //   padding: const EdgeInsets.only(bottom: 16),
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.start,
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: const [
-              //       Text(
-              //         'Password  harus terdiri dari 8-16 karakter',
-              //         style: TextStyle(color: AppColors.danger, fontSize: 12),
-              //       ),
-              //       Text(
-              //         'Password  harus mengandung huruf dan angka!',
-              //         style: TextStyle(color: AppColors.danger, fontSize: 12),
-              //       ),
-              //     ],
-              //   ),
-              // ),
 
               // Button Daftar
               Container(
