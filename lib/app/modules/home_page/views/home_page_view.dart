@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import '../controllers/home_page_controller.dart';
 
 class HomePageView extends GetView<HomePageController> {
-  const HomePageView({Key? key}) : super(key: key);
+  String email;
+  HomePageView({Key? key, required this.email}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

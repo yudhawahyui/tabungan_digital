@@ -71,7 +71,9 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.HOME_PAGE,
-      page: () => const HomePageView(),
+      page: () => HomePageView(
+        email: Get.arguments,
+      ),
       binding: HomePageBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 250),
