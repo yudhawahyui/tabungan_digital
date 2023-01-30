@@ -20,8 +20,8 @@ class historyNabung extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: ListView.builder(
+        scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
         itemCount: 10,
         itemBuilder: (context, index) {
           return const listNabung();
@@ -40,53 +40,109 @@ class listNabung extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Column(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  "23 Januari 20231",
-                  style: TextStyle(
-                    color: AppColors.white,
-                    fontSize: 16,
-                  ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "24 Januari 20231",
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      "Keterangan",
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
                 ),
-                Text(
-                  "Keterangan",
-                  style: TextStyle(
-                    color: AppColors.white,
-                    fontSize: 16,
-                  ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Rp.150.000",
+                      style: TextStyle(
+                        color: AppColors.danger,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-            const SizedBox(
-              height: 8,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  "Rp.100.000",
-                  style: TextStyle(
-                    color: AppColors.success,
-                    fontSize: 16,
-                  ),
-                ),
-              ],
+            Container(
+              margin: EdgeInsets.only(
+                top: 4,
+                bottom: 4,
+              ),
+              color: AppColors.white,
+              height: 1,
             ),
           ],
         ),
-        Container(
-          margin: EdgeInsets.only(
-            top: 4,
-            bottom: 4,
-          ),
-          color: AppColors.white,
-          height: 1,
+        Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "23 Januari 20231",
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      "Keterangan",
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Rp.100.000",
+                      style: TextStyle(
+                        color: AppColors.success,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.only(
+                top: 4,
+                bottom: 4,
+              ),
+              color: AppColors.white,
+              height: 1,
+            ),
+          ],
         ),
       ],
     );

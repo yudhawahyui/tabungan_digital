@@ -55,6 +55,9 @@ class DetailTabunganWidget extends StatelessWidget {
               backgroundColor: AppColors.primaryBg,
               alignment: AlignmentDirectional.centerStart,
               shape: RoundedRectangleBorder(
+                side: const BorderSide(
+                  color: AppColors.secondaryBg,
+                ),
                 borderRadius: BorderRadius.circular(5),
               ),
             ),
@@ -81,6 +84,9 @@ class DetailTabunganWidget extends StatelessWidget {
               foregroundColor: AppColors.white,
               backgroundColor: AppColors.primaryBg,
               shape: RoundedRectangleBorder(
+                side: const BorderSide(
+                  color: AppColors.secondaryBg,
+                ),
                 borderRadius: BorderRadius.circular(5),
               ),
             ),
@@ -107,6 +113,9 @@ class DetailTabunganWidget extends StatelessWidget {
               foregroundColor: AppColors.white,
               backgroundColor: AppColors.primaryBg,
               shape: RoundedRectangleBorder(
+                side: const BorderSide(
+                  color: AppColors.secondaryBg,
+                ),
                 borderRadius: BorderRadius.circular(5),
               ),
             ),
@@ -351,11 +360,17 @@ class DetailTabunganWidget extends StatelessWidget {
               ],
             ),
             // History Tabungan
-            const Text(
-              'History Tabungan',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            Container(
+              margin: const EdgeInsets.only(
+                top: 8,
+                bottom: 4,
+              ),
+              child: const Text(
+                'History Tabungan',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
             ),
-            historyNabung(),
+            const historyNabung(),
           ],
         ),
       ),

@@ -330,12 +330,18 @@ class wellcome4 extends StatelessWidget {
                   color: AppColors.black,
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextButton(
                 onPressed: () {
                   Get.toNamed('/register-page');
                 },
                 style: TextButton.styleFrom(
+                    padding: const EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                      top: 8,
+                      bottom: 8,
+                    ),
                     backgroundColor: AppColors.secondaryBg),
                 child: const Text(
                   "Nabung Sekarang!",
