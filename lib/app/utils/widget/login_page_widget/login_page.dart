@@ -46,7 +46,6 @@ class loginPage extends StatelessWidget {
                       height: 8,
                     ),
                     TextField(
-                      obscureText: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Masukkan Email',
