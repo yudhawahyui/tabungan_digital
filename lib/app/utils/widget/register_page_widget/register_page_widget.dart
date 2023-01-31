@@ -155,46 +155,6 @@ class registerPage2 extends StatelessWidget {
                 ),
               ),
 
-              // If Form Email & Password is not valid
-
-              // State Email & Password must be valid!
-              // Padding(
-              //   padding: const EdgeInsets.only(bottom: 16),
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.start,
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: const [
-              //       Text(
-              //         'Email anda salah! Masukkan email yang valid!',
-              //         style: TextStyle(color: AppColors.danger, fontSize: 12),
-              //       ),
-              //       Text(
-              //         'Password  harus mengandung huruf dan angka!',
-              //         style: TextStyle(color: AppColors.danger, fontSize: 12),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-
-              // State Password must be valid!
-              // Padding(
-              //   padding: const EdgeInsets.only(bottom: 16),
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.start,
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: const [
-              //       Text(
-              //         'Password  harus terdiri dari 8-16 karakter',
-              //         style: TextStyle(color: AppColors.danger, fontSize: 12),
-              //       ),
-              //       Text(
-              //         'Password  harus mengandung huruf dan angka!',
-              //         style: TextStyle(color: AppColors.danger, fontSize: 12),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-
               // Button Daftar
               Container(
                 width: Get.width,

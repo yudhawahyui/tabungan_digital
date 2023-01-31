@@ -83,7 +83,7 @@ class listNabung extends StatelessWidget {
               ],
             ),
             Container(
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                 top: 4,
                 bottom: 4,
               ),
@@ -135,7 +135,7 @@ class listNabung extends StatelessWidget {
               ],
             ),
             Container(
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                 top: 4,
                 bottom: 4,
               ),
