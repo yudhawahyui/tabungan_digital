@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "980395051112",
+    "project_id": "tabungan-digital-5d521",
+    "storage_bucket": "tabungan-digital-5d521.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980395051112:android:b42fffdef544d77de9d3dd",
+        "android_client_info": {
+          "package_name": "com.example.tabungan_digital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980395051112-ovfii9gl1kpejqh0s9v1ristls38em6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ5mteLFnMcSq-Knlsj--63O1jYwNfUNo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980395051112-ovfii9gl1kpejqh0s9v1ristls38em6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

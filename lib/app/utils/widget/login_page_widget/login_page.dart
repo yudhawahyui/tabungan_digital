@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
+import 'package:tabungan_digital/pages/auth.dart';
 
 class loginPage extends StatelessWidget {
   const loginPage({
@@ -9,6 +10,8 @@ class loginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var emailController = TextEditingController();
+    var passwordController = TextEditingController();
     return Padding(
       padding: const EdgeInsets.all(32),
       child: Column(
@@ -40,12 +43,14 @@ class loginPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text('Email'),
                     SizedBox(
                       height: 8,
                     ),
                     TextField(
+                      controller: emailController,
+                      obscureText: false,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Masukkan Email',
@@ -61,12 +66,13 @@ class loginPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text('Password'),
                     SizedBox(
                       height: 8,
                     ),
                     TextField(
+                      controller: passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -127,7 +133,8 @@ class loginPage extends StatelessWidget {
                 child: TextButton(
                   onPressed: () {
                     // Function Here
-                    Get.toNamed('/detail-tabungan-page');
+                    AuthController.instance.login(emailController.text.trim(),
+                        passwordController.text.trim());
                   },
                   child: const Text(
                     'Login',
