@@ -171,7 +171,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: NetworkImage(
-                                    'https://i.pinimg.com/564x/d3/70/b8/d370b847ca3333a0cd1c017a4f172659.jpg',
+                                    '/assets/images/mazda-rx7.png',
                                   ),
                                 ),
                                 borderRadius: BorderRadius.all(

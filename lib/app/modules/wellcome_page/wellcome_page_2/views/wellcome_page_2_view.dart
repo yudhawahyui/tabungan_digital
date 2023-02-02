@@ -10,17 +10,17 @@ class WellcomePage2View extends GetView<WellcomePage2Controller> {
   const WellcomePage2View({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.primaryBg,
-      body: GestureDetector(
-        onHorizontalDragEnd: (details) {
-          if (details.primaryVelocity! < 0) {
-            controller.nextPage();
-          } else if (details.primaryVelocity! > 0) {
-            controller.previousPage();
-          }
-        },
-        child: SafeArea(
+    return GestureDetector(
+      onHorizontalDragEnd: (details) {
+        if (details.primaryVelocity! < 0) {
+          controller.nextPage();
+        } else if (details.primaryVelocity! > 0) {
+          controller.previousPage();
+        }
+      },
+      child: const Scaffold(
+        backgroundColor: AppColors.primaryBg,
+        body: SafeArea(
           child: wellcome2(),
         ),
       ),

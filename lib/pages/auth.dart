@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -5,6 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tabungan_digital/app/modules/home_page/views/home_page_view.dart';
 import 'package:tabungan_digital/app/modules/login_page/views/login_page_view.dart';
 import 'package:tabungan_digital/app/modules/wellcome_page/wellcome_page_1/views/wellcome_page_view.dart';
+import 'package:tabungan_digital/app/utils/style/AppColors.dart';
 
 class AuthController extends GetxController {
   // avaible everywhere
@@ -28,10 +31,9 @@ class AuthController extends GetxController {
   _initialScreen(User? user) {
     if (user == null) {
       print("Login Page");
-      Get.offAll(() =>
-          // WellcomePageView()
-          // for testing only bypass the wellcomepage view
-          LoginPageView());
+      Get.offAll(
+        () => WellcomePageView(),
+      );
     } else {
       Get.offAll(() => HomePageView(email: user.email!));
     }
@@ -45,7 +47,7 @@ class AuthController extends GetxController {
       Get.snackbar(
         "About User",
         "User Message",
-        backgroundColor: Colors.redAccent,
+        backgroundColor: AppColors.danger,
         snackPosition: SnackPosition.BOTTOM,
         titleText: const Text(
           "Account Createion Failed",
@@ -67,8 +69,8 @@ class AuthController extends GetxController {
       Get.snackbar(
         "About Login",
         "Login Message",
-        backgroundColor: Colors.redAccent,
-        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: AppColors.danger,
+        snackPosition: SnackPosition.TOP,
         titleText: const Text(
           "Login Failed",
           style: TextStyle(color: Colors.white),

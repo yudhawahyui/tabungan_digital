@@ -10,7 +10,7 @@ class LoginPageView extends GetView<LoginPageController> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: loginPage(),
       ),
