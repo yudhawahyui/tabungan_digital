@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -35,7 +33,11 @@ class AuthController extends GetxController {
         () => WellcomePageView(),
       );
     } else {
-      Get.offAll(() => HomePageView(email: user.email!));
+      Get.offAll(
+        () => HomePageView(
+          email: user.email!,
+        ),
+      );
     }
   }
 
