@@ -133,10 +133,10 @@ packages:
     dependency: transitive
     description:
       name: dds
-      sha256: b3fa30f04485a3c4372e463971c147b89961a4b18a9817b5b839837326f30c74
+      sha256: "5320dcc87808eefc1c160d70b9bf9aa7dc104514484929821f08cf7d111c2ebc"
       url: "https://pub.dev"
     source: hosted
-    version: "2.7.3"
+    version: "2.7.4"
   dds_service_extensions:
     dependency: transitive
     description:
@@ -258,7 +258,8 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_expandable_fab
-      url: "https://pub.dartlang.org"
+      sha256: ed67b77d05bfb1960e0c96f7dbc6cd64de04a9710188991149665781926069d4
+      url: "https://pub.dev"
     source: hosted
     version: "1.7.0"
   flutter_lints:
