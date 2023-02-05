@@ -33,7 +33,7 @@ class AuthController extends GetxController {
     if (user == null) {
       print("Login Page");
       Get.offAll(
-        () => DetailTabunganPageView(),
+        () => LoginPageView(),
       );
     } else {
       Get.offAll(
