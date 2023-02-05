@@ -36,7 +36,11 @@ class AuthController extends GetxController {
         () => DetailTabunganPageView(),
       );
     } else {
-      Get.offAll(() => HomePageView(email: user.email!));
+      Get.offAll(
+        () => HomePageView(
+          email: user.email!,
+        ),
+      );
     }
   }
 
