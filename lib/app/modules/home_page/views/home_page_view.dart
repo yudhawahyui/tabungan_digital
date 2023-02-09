@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
-import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/list_nabung.dart';
-import 'package:tabungan_digital/app/utils/widget/home_page/target_widget.dart';
 import 'package:tabungan_digital/pages/auth.dart';
 import 'package:unicons/unicons.dart';
 
@@ -15,6 +13,7 @@ class HomePageView extends GetView<HomePageController> {
     Key? key,
     required this.email,
   }) : super(key: key);
+  final auth = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +61,9 @@ class HomePageView extends GetView<HomePageController> {
                   style: TextButton.styleFrom(
                     foregroundColor: AppColors.black,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    auth.logOut();
+                  },
                   child: const Icon(UniconsLine.sign_out_alt),
                 )
               ],
