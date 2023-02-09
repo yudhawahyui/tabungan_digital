@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
 
 class HomePageController extends GetxController {
-  //TODO: Implement HomePageController
+  final tabIndex = 0.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +18,7 @@ class HomePageController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  void setTabIndex(index) {
+    tabIndex.value = index as int;
+  }
 }

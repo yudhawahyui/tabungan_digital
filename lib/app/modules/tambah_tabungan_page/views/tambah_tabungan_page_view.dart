@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
-import 'package:unicons/unicons.dart';
 
 import '../controllers/tambah_tabungan_page_controller.dart';
 
@@ -13,11 +13,12 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
     return SafeArea(
       child: Scaffold(
         body: Container(
-          padding:
-              const EdgeInsets.only(left: 32, right: 32, top: 16, bottom: 16),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 32,
+            vertical: 16,
+          ),
           child: Column(
             children: [
-              // Header
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -25,7 +26,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                     onPressed: () {
                       Get.back();
                     },
-                    icon: const Icon(UniconsLine.angle_left_b),
+                    icon: const Icon(Icons.chevron_left_sharp),
                   ),
                   const Text(
                     'Tambah Tabungan',
@@ -38,43 +39,43 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: Get.width * 1,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: AppColors.grey1,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: const Icon(
-                      UniconsLine.image_plus,
-                      color: AppColors.white,
+                  GestureDetector(
+                    onTap: () {
+                      controller.getImage(ImageSource.gallery);
+                    },
+                    child: Obx(
+                      () => controller.imagePath.value == ""
+                          ? Container(
+                              width: double.infinity,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                color: AppColors.grey1,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: const Icon(
+                                Icons.image,
+                                color: AppColors.white,
+                              ),
+                            )
+                          : Image.network(
+                              controller.imagePath.value,
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
                     ),
                   ),
-                  Container(
-                    width: Get.width * 1,
-                    height: Get.height * .6,
+                  SizedBox(
+                    width: double.infinity,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          height: 50,
-                          margin: const EdgeInsets.only(top: 16),
-                          child: const TextField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Nama tabungan',
-                            ),
-                          ),
+                        TextInput(
+                          controller: controller.nameSavingController,
+                          label: 'Nama Tabungan',
                         ),
-                        Container(
-                          height: 50,
-                          margin: const EdgeInsets.only(top: 16),
-                          child: const TextField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Target tabungan',
-                            ),
-                          ),
+                        TextInput(
+                          controller: controller.targetSavingController,
+                          label: 'Target Tabungan',
                         ),
                         Container(
                           margin: const EdgeInsets.only(top: 16),
@@ -87,7 +88,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                               ),
                               Center(
                                 child: Container(
-                                  width: Get.width * 1,
+                                  width: double.infinity,
                                   height: 40,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(50),
@@ -97,38 +98,56 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      TextButton(
-                                        style: TextButton.styleFrom(
-                                          foregroundColor: AppColors.white,
-                                          backgroundColor: AppColors.primaryBg,
-                                          alignment:
-                                              AlignmentDirectional.center,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
+                                      Obx(
+                                        () => TextButton(
+                                          style: TextButton.styleFrom(
+                                            foregroundColor: AppColors.white,
+                                            backgroundColor:
+                                                controller.planSaving.value ==
+                                                        "harian"
+                                                    ? AppColors.success
+                                                    : AppColors.primaryBg,
+                                            alignment:
+                                                AlignmentDirectional.center,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            ),
                                           ),
+                                          onPressed: () {
+                                            controller.planSaving.value =
+                                                "harian";
+                                          },
+                                          child: const Text('Harian'),
                                         ),
-                                        onPressed: () {},
-                                        child: const Text('Harian'),
                                       ),
                                       Container(
                                         width: 1,
                                         height: 10,
                                         color: AppColors.white,
                                       ),
-                                      TextButton(
-                                        style: TextButton.styleFrom(
-                                          foregroundColor: AppColors.white,
-                                          backgroundColor: AppColors.primaryBg,
-                                          alignment:
-                                              AlignmentDirectional.center,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
+                                      Obx(
+                                        () => TextButton(
+                                          style: TextButton.styleFrom(
+                                            foregroundColor: AppColors.white,
+                                            backgroundColor:
+                                                controller.planSaving.value ==
+                                                        "bulanan"
+                                                    ? AppColors.success
+                                                    : AppColors.primaryBg,
+                                            alignment:
+                                                AlignmentDirectional.center,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            ),
                                           ),
+                                          onPressed: () {
+                                            controller.planSaving.value =
+                                                "bulanan";
+                                          },
+                                          child: const Text('Bulanan'),
                                         ),
-                                        onPressed: () {},
-                                        child: const Text('Bulanan'),
                                       ),
                                     ],
                                   ),
@@ -137,30 +156,23 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                             ],
                           ),
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(top: 16),
-                          child: const TextField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Nominal pengisian',
-                            ),
-                          ),
+                        TextInput(
+                          controller: controller.nominalSavingController,
+                          label: 'Nominal Tabungan',
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(top: 16),
-                          child: const TextField(
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: 'Keterangan',
-                            ),
-                          ),
+                        TextInput(
+                          controller: controller.informationController,
+                          label: 'Keterangan',
                         ),
                         Container(
                           margin: const EdgeInsets.only(top: 16),
                           child: Center(
                             child: TextButton(
                               style: TextButton.styleFrom(
-                                padding: const EdgeInsets.all(12),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 8,
+                                ),
                                 foregroundColor: AppColors.white,
                                 backgroundColor: AppColors.primaryBg,
                                 alignment: AlignmentDirectional.center,
@@ -168,7 +180,9 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.addSaving();
+                              },
                               child: const Text('Simpan'),
                             ),
                           ),
@@ -180,6 +194,32 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class TextInput extends StatelessWidget {
+  const TextInput({
+    Key? key,
+    required this.label,
+    required this.controller,
+  }) : super(key: key);
+
+  final String label;
+  final controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      margin: const EdgeInsets.only(top: 16),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          border: const OutlineInputBorder(),
+          labelText: label,
         ),
       ),
     );

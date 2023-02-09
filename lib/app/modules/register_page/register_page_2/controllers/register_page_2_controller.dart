@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RegisterPage2Controller extends GetxController {
-  //TODO: Implement RegisterPage2Controller
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +20,11 @@ class RegisterPage2Controller extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  void login() {
+    Map data = {
+      "email": emailController.text,
+      "password": passwordController.text
+    };
+    print(data);
+  }
 }

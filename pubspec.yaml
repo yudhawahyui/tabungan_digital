@@ -2,29 +2,33 @@ name: tabungan_digital
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
-  sdk: '>=2.18.6 <3.0.0'
+environment:
+  sdk: ">=2.18.6 <3.0.0"
 
-dependencies: 
+dependencies:
   unicons: any
   cupertino_icons: ^1.0.2
   get: 4.6.5
-  flutter: 
+  flutter:
     sdk: flutter
   drop_shadow: ^0.0.2+1
   dwds: ^16.0.2
   flutter_expandable_fab: ^1.7.0
+  intl: ^0.18.0
+  percent_indicator: ^4.0.1
+  image_picker: ^0.8.6+1
+  image_cropper: ^3.0.1
 
-dev_dependencies: 
+dev_dependencies:
   flutter_lints: ^2.0.0
-  flutter_test: 
+  flutter_test:
     sdk: flutter
   cloud_firestore: ^4.3.1
   firebase_auth: ^4.0.0
   email_validator: ^2.0.1
 
-flutter: 
-  assets: 
+flutter:
+  assets:
     - assets/
     # - assets/icons/
   uses-material-design: true

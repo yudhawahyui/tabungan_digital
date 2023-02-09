@@ -14,7 +14,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  Get.put(AuthController(), permanent: true);
+  // Get.put(AuthController(), permanent: true);
 
   runApp(
     GetMaterialApp(
