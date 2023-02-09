@@ -22,7 +22,7 @@ class WellcomePageView extends GetView<WellcomePageController> {
       child: Scaffold(
         backgroundColor: AppColors.primaryBg,
         body: SafeArea(
-          child: !context.isPhone ? wellcome1() : LoginPageView(),
+          child: context.isPhone ? wellcome1() : LoginPageView(),
         ),
       ),
     );
