@@ -29,8 +29,9 @@ class AuthController extends GetxController {
   _initialScreen(User? user) {
     if (user == null) {
       print("Login Page");
+
       Get.offAll(
-        () => WellcomePageView(),
+        () => const WellcomePageView(),
       );
     } else {
       Get.offAll(
