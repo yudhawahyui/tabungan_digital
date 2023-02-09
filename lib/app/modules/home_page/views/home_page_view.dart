@@ -12,11 +12,10 @@ import 'package:unicons/unicons.dart';
 import '../controllers/home_page_controller.dart';
 
 class HomePageView extends GetView<HomePageController> {
-  String? email;
+  String email;
   HomePageView({
     Key? key,
-    // required this.email,
-    this.email,
+    required this.email,
   }) : super(key: key);
 
   @override
