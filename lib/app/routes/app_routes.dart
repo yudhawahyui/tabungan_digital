@@ -14,6 +14,8 @@ abstract class Routes {
   static const WELLCOME_PAGE_3 = _Paths.WELLCOME_PAGE_3;
   static const WELLCOME_PAGE_4 = _Paths.WELLCOME_PAGE_4;
   static const REGISTER_PAGE_2 = _Paths.REGISTER_PAGE_2;
+  // static const HOME = _Paths.HOME;
+  static const ADD_SAVINGS = _Paths.ADD_SAVINGS;
 }
 
 abstract class _Paths {
@@ -29,4 +31,6 @@ abstract class _Paths {
   static const WELLCOME_PAGE_3 = '/wellcome-page-3';
   static const WELLCOME_PAGE_4 = '/wellcome-page-4';
   static const REGISTER_PAGE_2 = '/register-page-2';
+  static const HOME = '/home';
+  static const ADD_SAVINGS = '/add-savings';
 }

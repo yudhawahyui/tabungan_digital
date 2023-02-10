@@ -22,6 +22,10 @@ import '../modules/wellcome_page/wellcome_page_3/bindings/wellcome_page_3_bindin
 import '../modules/wellcome_page/wellcome_page_3/views/wellcome_page_3_view.dart';
 import '../modules/wellcome_page/wellcome_page_4/bindings/wellcome_page_4_binding.dart';
 import '../modules/wellcome_page/wellcome_page_4/views/wellcome_page_4_view.dart';
+import '../modules/addSavings/bindings/add_savings_binding.dart';
+import '../modules/addSavings/views/add_savings_view.dart';
+import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/views/home_view.dart';
 
 part 'app_routes.dart';
 
