@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tabungan_digital/app/modules/home_page/views/home_page_view.dart';
-import 'package:tabungan_digital/app/modules/login_page/views/login_page_view.dart';
 import 'package:tabungan_digital/app/modules/wellcome_page/wellcome_page_1/views/wellcome_page_view.dart';
+import 'package:tabungan_digital/app/routes/app_pages.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
 
 class AuthController extends GetxController {
@@ -30,7 +30,7 @@ class AuthController extends GetxController {
     if (user == null) {
       print("Login Page");
       Get.offAll(
-        () => WellcomePageView(),
+        () => const WellcomePageView(),
       );
     } else {
       Get.offAll(
@@ -44,7 +44,9 @@ class AuthController extends GetxController {
   void register(String email, password) async {
     try {
       await auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
     } catch (e) {
       Get.snackbar(
         "About User",
@@ -88,5 +90,6 @@ class AuthController extends GetxController {
 
   void logOut() async {
     await auth.signOut();
+    Get.offAllNamed(Routes.LOGIN_PAGE);
   }
 }
