@@ -21,9 +21,6 @@ class FirebaseCrud {
     required String rencana,
     required int nominal_pengisian,
   }) async {
-    print("masuk Ke function");
-    print(biaya_terkumpul);
-
     Responseses response = Responseses();
     DocumentReference documentReferencer = _Collection.doc();
 
@@ -40,6 +37,8 @@ class FirebaseCrud {
       "rencana": rencana,
       "nominal_pengisian": nominal_pengisian,
     };
+
+    print(data);
 
     var result = await documentReferencer
         .set(data)

@@ -51,4 +51,13 @@ class TestController extends GetxController {
       Get.snackbar('Error', '${e.toString()}');
     }
   }
+
+  Future<void> TampilData() async {
+    FirebaseFirestore.instance.collection("tabungan").get().then((value) {
+      for (var i in value.docs) {
+        data.add(i.data());
+        print(data);
+      }
+    });
+  }
 }
