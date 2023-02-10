@@ -8,12 +8,12 @@ import '../controllers/register_page_controller.dart';
 
 class RegisterPageView extends GetView<RegisterPageController> {
   const RegisterPageView({Key? key}) : super(key: key);
-  @override
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
-        child: registerPage1(),
+        child: registerPage2(),
       ),
     );
   }

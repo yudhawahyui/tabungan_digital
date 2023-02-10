@@ -174,7 +174,8 @@ class TargetSelesai extends StatelessWidget {
                         // image
                         AspectRatio(
                           aspectRatio: 500 / 250,
-                          child: Container(
+                          child: 
+                          Container(
                             decoration: const BoxDecoration(
                               image: DecorationImage(
                                 fit: BoxFit.cover,
