@@ -65,7 +65,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.TAMBAH_TABUNGAN_PAGE,
-      page: () => const TambahTabunganPageView(),
+      page: () => TambahTabunganPageView(),
       binding: TambahTabunganPageBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 250),
