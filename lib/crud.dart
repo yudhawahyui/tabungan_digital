@@ -50,9 +50,9 @@ class FirebaseCrud {
             })
         .catchError((e) {
       print(e.toString());
-      Get.snackbar('Error', 'Tabungan gagal ditambahkan');
-      response.code = 400;
-      response.message = 'Tabungan gagal ditambahkan';
+      // Get.snackbar('Error', 'Tabungan gagal ditambahkan');
+      // response.code = 400;
+      // response.message = 'Tabungan gagal ditambahkan';
     });
 
     // return back to home page;

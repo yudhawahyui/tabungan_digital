@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:tabungan_digital/custom_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class TestController extends GetxController {
   bool isLoading = false;
   var tabunganList = <TabunganModel>[];
   List data = [];
+  final user = FirebaseAuth.instance.currentUser!;
 
   Future<void> getData() async {
     bool isLoading = true;
@@ -13,6 +15,7 @@ class TestController extends GetxController {
       QuerySnapshot tabungans = await FirebaseFirestore.instance
           .collection('tabungan')
           .orderBy('dibuat')
+          .where('user_email', isEqualTo: user.email!)
           .get();
       tabunganList.clear();
 
@@ -35,14 +38,14 @@ class TestController extends GetxController {
             nama_tabungan: tabungan['nama_tabungan'],
             keterangan: tabungan['keterangan'],
             target_tabungan: tabungan['target_tabungan'],
-            status: tabungan['Status'],
+            status: tabungan['status'],
             dibuat: tabungan['dibuat'],
             biaya_terkumpul: tabungan['biaya_terkumpul'],
             gambar: tabungan['gambar'],
             rencana: tabungan['rencana'],
             nominal_pengisian: tabungan['nominal_pengisian']));
       }
-      // print(tabunganList);
+      print(tabunganList);
       isLoading = false;
       // set state
       update();

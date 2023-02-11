@@ -88,13 +88,13 @@ class HomePageView extends GetView<HomePageController> {
                             style: TextButton.styleFrom(
                               foregroundColor: AppColors.black,
                             ),
-                            onPressed: () {},
+                            onPressed: () => AuthController.instance.logOut(),
                             child: const Icon(UniconsLine.sign_out_alt),
                           )
                         ],
                       ),
                       TabBar(
-                        indicatorColor: AppColors.primaryBg,
+                        indicatorColor: AppColors.primaryBg,  
                         tabs: myTab,
                       ),
                     ],

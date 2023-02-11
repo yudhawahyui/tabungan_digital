@@ -6,7 +6,6 @@ import 'package:tabungan_digital/app/utils/style/AppColors.dart';
 import 'package:tabungan_digital/crud.dart';
 import 'package:unicons/unicons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../controllers/tambah_tabungan_page_controller.dart';
 
 class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
@@ -28,6 +27,8 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
     final _nominal_pengisian = TextEditingController();
     final now = new DateTime.now();
     final user = FirebaseAuth.instance.currentUser!;
+    // create id from timestamp now convert it to string
+    final _id = now.millisecondsSinceEpoch.toInt();
 
     return SafeArea(
       child: Scaffold(
@@ -233,7 +234,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                   ),
                                   onPressed: () async {
                                     print('tombol simpan ditekan');
-                                    print("tabungan id :" + _tabungan_id.text);
+                                    print("tabungan id :" + _id.toString());
                                     print("email User :" + user.email!);
                                     print("nama Tabungan: " +
                                         _nama_tabungan.text);
@@ -249,7 +250,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                     if (_formKey.currentState!.validate()) {
                                       var response =
                                           await FirebaseCrud.addTabungan(
-                                              tabungan_id: 2,
+                                              tabungan_id: _id,
                                               user_email:
                                                   // get email from main controller
                                                   user.email!,
