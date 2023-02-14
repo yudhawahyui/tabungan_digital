@@ -111,13 +111,7 @@ class AppPages {
       name: _Paths.REGISTER_PAGE_2,
       page: () => const RegisterPage2View(),
       binding: RegisterPage2Binding(),
-      children: [
-        GetPage(
-          name: _Paths.REGISTER_PAGE_2,
-          page: () => const RegisterPage2View(),
-          binding: RegisterPage2Binding(),
-        ),
-      ],
+      transition: Transition.fadeIn,
     ),
   ];
 }

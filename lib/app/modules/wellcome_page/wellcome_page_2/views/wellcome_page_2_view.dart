@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:tabungan_digital/app/modules/login_page/views/login_page_view.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
 import 'package:tabungan_digital/app/utils/widget/wellcome_page_widget/wellcome_page_widget.dart';
 
@@ -18,10 +19,10 @@ class WellcomePage2View extends GetView<WellcomePage2Controller> {
           controller.previousPage();
         }
       },
-      child: const Scaffold(
+      child: Scaffold(
         backgroundColor: AppColors.primaryBg,
         body: SafeArea(
-          child: wellcome2(),
+          child: context.isPhone ? wellcome2() : LoginPageView(),
         ),
       ),
     );
