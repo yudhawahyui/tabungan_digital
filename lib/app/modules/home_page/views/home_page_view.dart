@@ -94,7 +94,7 @@ class HomePageView extends GetView<HomePageController> {
                         ],
                       ),
                       TabBar(
-                        indicatorColor: AppColors.primaryBg,  
+                        indicatorColor: AppColors.primaryBg,
                         tabs: myTab,
                       ),
                     ],
