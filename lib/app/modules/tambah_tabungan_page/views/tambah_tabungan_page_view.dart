@@ -1,6 +1,10 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tabungan_digital/app/modules/home_page/controllers/tabungan_view_controller.dart';
 import 'package:tabungan_digital/app/modules/home_page/views/home_page_view.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
@@ -13,6 +17,15 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
   TambahTabunganPageView({Key? key}) : super(key: key);
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TestController tabunganController = Get.put(TestController());
+  File? image;
+  Future getImage() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? imagePicked =
+        await _picker.pickImage(source: ImageSource.gallery);
+    image = File(imagePicked!.path);
+    // setState(() {});
+    print(image);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +48,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
+          // Android
           child: context.isPhone
               ? Container(
                   padding: const EdgeInsets.only(
@@ -64,16 +78,33 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              width: Get.width * 1,
-                              height: 200,
-                              decoration: BoxDecoration(
-                                color: AppColors.grey1,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: const Icon(
-                                UniconsLine.image_plus,
-                                color: AppColors.white,
+                            GestureDetector(
+                              onTap: () {
+                                // controller.getImage(ImageSource.gallery);
+                              },
+                              child: GestureDetector(
+                                onTap: () {
+                                  // controller.getImage(ImageSource.gallery);
+                                },
+                                child: GestureDetector(
+                                  onTap: () {
+                                    getImage();
+                                  },
+                                  child: Container(
+                                    width: Get.width * .5,
+                                    height: Get.height * .3,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.primaryBg,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: const Center(
+                                      child: Icon(
+                                        UniconsLine.image,
+                                        size: 50,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                             Container(
@@ -120,7 +151,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                         }
                                       },
                                       controller: _target_tabungan,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         border: OutlineInputBorder(),
                                         labelText: 'Target tabungan',
                                       ),
@@ -211,7 +242,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                           return 'Nominal pengisian tidak boleh kosong';
                                         }
                                       },
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         border: OutlineInputBorder(),
                                         labelText: 'Nominal pengisian',
                                       ),
@@ -226,7 +257,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                           return 'Keterangan tidak boleh kosong';
                                         }
                                       },
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         border: OutlineInputBorder(),
                                         labelText: 'Keterangan',
                                       ),
@@ -347,17 +378,37 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                width: Get.width * 1,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  color: AppColors.grey1,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: const Icon(
-                                  UniconsLine.image_plus,
-                                  color: AppColors.white,
-                                ),
+                              GestureDetector(
+                                onTap: () async {
+                                  await getImage();
+                                },
+                                child: image != null
+                                    ? Container(
+                                        width: Get.width * .5,
+                                        height: Get.height * .3,
+                                        decoration: BoxDecoration(
+                                          color: AppColors.primaryBg,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        child: Image.file(image!,
+                                            fit: BoxFit.cover),
+                                      )
+                                    : Container(
+                                        width: Get.width * .5,
+                                        height: Get.height * .3,
+                                        decoration: BoxDecoration(
+                                          color: AppColors.primaryBg,
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                        ),
+                                        child: const Center(
+                                          child: Icon(
+                                            UniconsLine.image,
+                                            size: 50,
+                                          ),
+                                        ),
+                                      ),
                               ),
                               Container(
                                 width: Get.width * 1,
@@ -403,7 +454,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                           }
                                         },
                                         controller: _target_tabungan,
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           border: OutlineInputBorder(),
                                           labelText: 'Target tabungan',
                                         ),
@@ -496,7 +547,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                             return 'Nominal pengisian tidak boleh kosong';
                                           }
                                         },
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           border: OutlineInputBorder(),
                                           labelText: 'Nominal pengisian',
                                         ),
@@ -511,7 +562,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                             return 'Keterangan tidak boleh kosong';
                                           }
                                         },
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           border: OutlineInputBorder(),
                                           labelText: 'Keterangan',
                                         ),

@@ -18,7 +18,7 @@ Future<void> main() async {
   Get.put(AuthController(), permanent: true);
 
   runApp(
-    GetMaterialApp(
+    const GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Tabungan Digital App",
       initialRoute: AppPages.INITIAL,

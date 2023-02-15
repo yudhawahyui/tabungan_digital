@@ -210,7 +210,7 @@ class LoginPageView extends GetView<LoginPageController> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         const Text('Email'),
                                         const SizedBox(

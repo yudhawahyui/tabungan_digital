@@ -18,6 +18,7 @@ dependencies:
   unicons: any
   flutter_expandable_fab: ^1.7.0
   cloud_firestore: ^4.3.1
+  image_picker_web: ^3.0.0+1
   # firebase_database: ^10.0.9
 
 dev_dependencies:

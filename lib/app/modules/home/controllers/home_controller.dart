@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
-
+  final imagePath = "".obs;
+  final imageSize = "".obs;
   final count = 0.obs;
   final tabIndex = 0.obs;
 

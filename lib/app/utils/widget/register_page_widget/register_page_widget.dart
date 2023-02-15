@@ -252,143 +252,131 @@ class registerPage2 extends StatelessWidget {
                             width: Get.width * .3,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
+                                const Text(
+                                  'Buat Akun Anda',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.black,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 16,
+                                ),
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    const Text(
-                                      'Buat Akun Anda',
-                                      style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.black,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 16,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        // Form Email
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(bottom: 16),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              const Text('Email'),
-                                              const SizedBox(
-                                                height: 8,
-                                              ),
-                                              TextField(
-                                                controller: emailController,
-                                                obscureText: false,
-                                                decoration:
-                                                    const InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                  labelText: 'Masukkan Email',
-                                                ),
-                                              ),
-                                            ],
+                                    // Form Email
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 16),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Text('Email'),
+                                          const SizedBox(
+                                            height: 8,
                                           ),
-                                        ),
-
-                                        // Form Password
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(bottom: 16),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              const Text('Password'),
-                                              const SizedBox(
-                                                height: 8,
-                                              ),
-                                              TextField(
-                                                controller: passwordController,
-                                                obscureText: true,
-                                                decoration:
-                                                    const InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                  labelText:
-                                                      'Masukkan Password',
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-
-                                        // Button Daftar
-                                        Container(
-                                          width: Get.width,
-                                          decoration: const BoxDecoration(
-                                            color: AppColors.primaryBg,
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(8)),
-                                          ),
-                                          child: TextButton(
-                                            onPressed: () {
-                                              // Function Here
-                                              AuthController.instance.register(
-                                                  emailController.text.trim(),
-                                                  passwordController.text
-                                                      .trim());
-                                            },
-                                            child: const Text(
-                                              'Daftar',
-                                              style: TextStyle(
-                                                color: AppColors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 16,
-                                              ),
+                                          TextField(
+                                            controller: emailController,
+                                            obscureText: false,
+                                            decoration: const InputDecoration(
+                                              border: OutlineInputBorder(),
+                                              labelText: 'Masukkan Email',
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 16),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              const Text(
-                                                'Sudah memiki akun?',
-                                                style: TextStyle(fontSize: 16),
-                                              ),
-                                              const SizedBox(width: 6),
-                                              TextButton(
-                                                onPressed: () => Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const LoginPageView(),
-                                                  ),
-                                                ),
-                                                child: const Text(
-                                                  'Login',
-                                                  style: TextStyle(
-                                                      color:
-                                                          AppColors.primaryBg,
-                                                      fontSize: 16),
-                                                ),
-                                              ),
-                                            ],
+                                        ],
+                                      ),
+                                    ),
+
+                                    // Form Password
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 16),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Text('Password'),
+                                          const SizedBox(
+                                            height: 8,
+                                          ),
+                                          TextField(
+                                            controller: passwordController,
+                                            obscureText: true,
+                                            decoration: const InputDecoration(
+                                              border: OutlineInputBorder(),
+                                              labelText: 'Masukkan Password',
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+
+                                    // Button Daftar
+                                    Container(
+                                      width: Get.width,
+                                      decoration: const BoxDecoration(
+                                        color: AppColors.primaryBg,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(8)),
+                                      ),
+                                      child: TextButton(
+                                        onPressed: () {
+                                          // Function Here
+                                          AuthController.instance.register(
+                                              emailController.text.trim(),
+                                              passwordController.text.trim());
+                                        },
+                                        child: const Text(
+                                          'Daftar',
+                                          style: TextStyle(
+                                            color: AppColors.black,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16,
                                           ),
                                         ),
-                                      ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 16),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Text(
+                                            'Sudah memiki akun?',
+                                            style: TextStyle(fontSize: 16),
+                                          ),
+                                          const SizedBox(width: 6),
+                                          TextButton(
+                                            onPressed: () => Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const LoginPageView(),
+                                              ),
+                                            ),
+                                            child: const Text(
+                                              'Login',
+                                              style: TextStyle(
+                                                  color: AppColors.primaryBg,
+                                                  fontSize: 16),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
-                                )
+                                ),
                               ],
                             ),
                           ),
