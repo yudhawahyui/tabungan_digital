@@ -1,21 +1,30 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tabungan_digital/app/modules/home_page/controllers/tabungan_view_controller.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
+import 'package:intl/intl.dart';
 
 class TargetNabung extends StatelessWidget {
-  const TargetNabung({
+  final int index;
+  TargetNabung({
     Key? key,
+    required this.index,
   }) : super(key: key);
+
+  TestController tabunganController = Get.put(TestController());
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Container(
+    return GetBuilder(
+      init: TestController(),
+      initState: (_) {},
+      builder: (controller) {
+        return Container(
+          margin: const EdgeInsets.all(8),
+          child: Column(
+            children: [
+              Container(
                 decoration: BoxDecoration(
                   color: AppColors.primaryBg,
                   borderRadius: BorderRadius.circular(5),
@@ -43,11 +52,11 @@ class TargetNabung extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 16, bottom: 16),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16, bottom: 16),
                         child: Text(
-                          "Supra Bapak",
-                          style: TextStyle(
+                          tabunganController.tabunganList[index].nama_tabungan,
+                          style: const TextStyle(
                               color: AppColors.white,
                               fontSize: 24,
                               fontWeight: FontWeight.bold),
@@ -60,25 +69,35 @@ class TargetNabung extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // Target Tabungan
-                              const Text(
-                                "Rp.2.051.000.000",
-                                style: TextStyle(
-                                    color: AppColors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold),
+                              Text(
+                                NumberFormat.currency(
+                                  locale: 'id',
+                                  symbol: 'Rp. ',
+                                  decimalDigits: 2,
+                                ).format(tabunganController
+                                    .tabunganList[index].target_tabungan),
+                                style: const TextStyle(
+                                  color: AppColors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   // Nominal nabung di ambil dari database
                                   Text(
-                                    "Rp.135.000",
-                                    style: TextStyle(
+                                    NumberFormat.currency(
+                                      locale: 'id',
+                                      symbol: 'Rp. ',
+                                      decimalDigits: 2,
+                                    ).format(tabunganController
+                                        .tabunganList[index].nominal_pengisian),
+                                    style: const TextStyle(
                                       color: AppColors.white,
                                       fontSize: 16,
                                     ),
                                   ),
-                                  Text(
+                                  const Text(
                                     " Perbulan",
                                     style: TextStyle(
                                       color: AppColors.white,
@@ -135,10 +154,10 @@ class TargetNabung extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        );
+      },
     );
   }
 }

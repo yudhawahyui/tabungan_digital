@@ -58,7 +58,9 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.TERCAPAI_PAGE,
-      page: () => const TercapaiPageView(),
+      page: () => TercapaiPageView(
+        email: Get.arguments,
+      ),
       binding: TercapaiPageBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 250),
@@ -81,7 +83,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DETAIL_TABUNGAN_PAGE,
-      page: () => const DetailTabunganPageView(),
+      page: () => DetailTabunganPageView(),
       binding: DetailTabunganPageBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 250),

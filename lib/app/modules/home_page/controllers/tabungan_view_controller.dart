@@ -55,7 +55,7 @@ class TestController extends GetxController {
     }
   }
 
-  Future<void> TampilData() async {
+  Stream<DocumentSnapshot<Map<String, dynamic>>> TampilData() async* {
     FirebaseFirestore.instance.collection("tabungan").get().then((value) {
       for (var i in value.docs) {
         data.add(i.data());

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tabungan_digital/app/modules/home_page/controllers/tabungan_view_controller.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
 
 class TargetSelesai extends StatelessWidget {
-  const TargetSelesai({
+  var index;
+  TargetSelesai({
     Key? key,
+    required this.index,
   }) : super(key: key);
+
+  TestController tabunganController = Get.put(TestController());
 
   @override
   Widget build(BuildContext context) {
