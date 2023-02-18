@@ -88,7 +88,8 @@ class HomePageView extends GetView<HomePageController> {
             init: TestController(),
             initState: (_) {},
             builder: (tabunganController) {
-              tabunganController.getData();
+              // get Model
+              print(tabunganController);
               return SafeArea(
                 child: DefaultTabController(
                   length: myTab.length,
@@ -222,7 +223,6 @@ class HomePageView extends GetView<HomePageController> {
             init: TestController(),
             initState: (_) {},
             builder: (tabunganController) {
-              tabunganController.getData();
               return Scaffold(
                 drawer: _buildDrawer(context),
                 appBar: AppBar(

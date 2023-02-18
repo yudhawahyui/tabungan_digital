@@ -23,4 +23,8 @@ class TabunganModel {
       required this.gambar,
       required this.rencana,
       required this.nominal_pengisian});
+
+  
 }
+
+
