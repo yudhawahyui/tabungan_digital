@@ -92,133 +92,136 @@ class HomePageView extends GetView<HomePageController> {
             initState: (_) {},
             builder: (tabunganController) {
               // get Model
-              return SafeArea(
-                child: DefaultTabController(
-                  length: myTab.length,
-                  child: Scaffold(
-                    floatingActionButton: FloatingActionButton.extended(
-                      onPressed: () {
-                        var route = MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              TambahTabunganPageView(),
-                        );
-                        Navigator.of(context).push(route);
-                      },
-                      foregroundColor: AppColors.black,
-                      backgroundColor: AppColors.white,
-                      label: const Text('Tambah Tabungan'),
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                          color: AppColors.primaryBg,
-                          width: 2,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      icon: const Icon(
-                        UniconsLine.plus,
-                      ),
-                    ),
-                    appBar: PreferredSize(
-                      preferredSize: const Size.fromHeight(130),
-                      child: Container(
-                        padding: const EdgeInsets.only(
-                          left: 32,
-                          right: 32,
-                          top: 16,
-                          bottom: 16,
-                        ),  
-                        width: Get.width * 1,
-                        color: AppColors.white,
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                const Text(
-                                  'Tabungan Digital',
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const Spacer(),
-                                TextButton(
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: AppColors.black,
-                                  ),
-                                  onPressed: () => auth.logOut(),
-                                  child: const Icon(UniconsLine.sign_out_alt),
-                                )
-                              ],
-                            ),
-                            TabBar(
-                              indicatorColor: AppColors.primaryBg,
-                              tabs: myTab,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    body: Container(
-                      height: Get.height * .74,
-                      child: TabBarView(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(
-                              left: 32,
-                              right: 32,
-                            ),
-                            child: ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: tabunganController.tabunganList.length,
-                              itemBuilder: (BuildContext context, index) {
-                                // if data not yet loaded from API then show loading indicator
-                                // print(tabunganController
-                                // .tabunganList[index].nama_tabungan);
-                                return GestureDetector(
-                                  onTap: () {
-                                    // Get.toNamed('/detail-tabungan-page',
-                                    //     arguments: tabunganController
-                                    //         .tabunganList[index].tabungan_id);
-                                    var route = MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          DetailTabunganPageView(
-                                        docId: tabunganController
-                                            .tabunganList[index].docId,
-                                      ),
-                                    );
-                                    Navigator.of(context).push(route);
-                                  },
-                                  child: TargetNabung(
-                                    index: index,
-                                  ),
-                                );
-                              },
-                            ),
+              return Obx(
+                () => SafeArea(
+                  child: DefaultTabController(
+                    length: myTab.length,
+                    child: Scaffold(
+                      floatingActionButton: FloatingActionButton.extended(
+                        onPressed: () {
+                          var route = MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                TambahTabunganPageView(),
+                          );
+                          Navigator.of(context).push(route);
+                        },
+                        foregroundColor: AppColors.black,
+                        backgroundColor: AppColors.white,
+                        label: const Text('Tambah Tabungan'),
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                            color: AppColors.primaryBg,
+                            width: 2,
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(
-                              left: 32,
-                              right: 32,
-                            ),
-                            child: GestureDetector(
-                              onTap: () {},
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        icon: const Icon(
+                          UniconsLine.plus,
+                        ),
+                      ),
+                      appBar: PreferredSize(
+                        preferredSize: const Size.fromHeight(130),
+                        child: Container(
+                          padding: const EdgeInsets.only(
+                            left: 32,
+                            right: 32,
+                            top: 16,
+                            bottom: 16,
+                          ),
+                          width: Get.width * 1,
+                          color: AppColors.white,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Tabungan Digital',
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  TextButton(
+                                    style: TextButton.styleFrom(
+                                      foregroundColor: AppColors.black,
+                                    ),
+                                    onPressed: () => auth.logOut(),
+                                    child: const Icon(UniconsLine.sign_out_alt),
+                                  )
+                                ],
+                              ),
+                              TabBar(
+                                indicatorColor: AppColors.primaryBg,
+                                tabs: myTab,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      body: Container(
+                        height: Get.height * .74,
+                        child: TabBarView(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(
+                                left: 32,
+                                right: 32,
+                              ),
                               child: ListView.builder(
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
                                 itemCount:
-                                    tercapaiController.tabunganList.length,
-                                itemBuilder: (context, index) {
-                                  return
-                                      // Text("index : $index");
-                                      TargetSelesai(
-                                    index: index,
+                                    tabunganController.tabunganList.length,
+                                itemBuilder: (BuildContext context, index) {
+                                  // if data not yet loaded from API then show loading indicator
+                                  // print(tabunganController
+                                  // .tabunganList[index].nama_tabungan);
+                                  return GestureDetector(
+                                    onTap: () {
+                                      // Get.toNamed('/detail-tabungan-page',
+                                      //     arguments: tabunganController
+                                      //         .tabunganList[index].tabungan_id);
+                                      var route = MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            DetailTabunganPageView(
+                                          docId: tabunganController
+                                              .tabunganList[index].docId,
+                                        ),
+                                      );
+                                      Navigator.of(context).push(route);
+                                    },
+                                    child: TargetNabung(
+                                      index: index,
+                                    ),
                                   );
                                 },
                               ),
                             ),
-                          ),
-                        ],
+                            Container(
+                              margin: const EdgeInsets.only(
+                                left: 32,
+                                right: 32,
+                              ),
+                              child: GestureDetector(
+                                onTap: () {},
+                                child: ListView.builder(
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true,
+                                  itemCount:
+                                      tercapaiController.tabunganList.length,
+                                  itemBuilder: (context, index) {
+                                    return
+                                        // Text("index : $index");
+                                        TargetSelesai(
+                                      index: index,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

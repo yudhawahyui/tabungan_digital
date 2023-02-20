@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class TercapaiController extends GetxController {
   bool isLoading = false;
   var tabunganList = <TabunganModel>[].obs;
-  List data = [];
+  List data = [].obs;
   final user = FirebaseAuth.instance.currentUser!;
 
   void onInit() async {

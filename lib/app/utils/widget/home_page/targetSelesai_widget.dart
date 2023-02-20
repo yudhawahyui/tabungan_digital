@@ -80,7 +80,7 @@ class TargetSelesai extends StatelessWidget {
                                 Text(
                                   NumberFormat.currency(
                                     locale: 'id',
-                                    symbol: 'Rp. ',
+                                    symbol: 'Rp.',
                                     decimalDigits: 2,
                                   ).format(
                                     tabunganController

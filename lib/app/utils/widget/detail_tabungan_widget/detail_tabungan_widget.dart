@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:tabungan_digital/app/modules/home_page/controllers/tabungan_view_controller.dart';
 import 'package:tabungan_digital/app/modules/home_page/views/home_page_view.dart';
 import 'package:tabungan_digital/app/modules/login_page/views/login_page_view.dart';
@@ -172,7 +173,7 @@ class DetailTabunganWidget extends StatelessWidget {
                               // location.reload();
                               // refresh the app
                               // Get.offAll(() => HomePageView(
-                              Navigator.pop(context);
+                              Navigator.pop(context, true);
                             },
                             icon: const Icon(UniconsLine.angle_left_b),
                           ),
@@ -248,7 +249,11 @@ class DetailTabunganWidget extends StatelessWidget {
                                         children: [
                                           // Target Tabungan
                                           Text(
-                                            data['target_tabungan'].toString(),
+                                            NumberFormat.currency(
+                                              locale: 'id',
+                                              symbol: 'Rp.',
+                                              decimalDigits: 2,
+                                            ).format(data['target_tabungan']),
                                             // tabunganController
                                             //     .tabunganList[0].target_tabungan
                                             //     .toString(),
@@ -261,8 +266,12 @@ class DetailTabunganWidget extends StatelessWidget {
                                             children: [
                                               // Nominal nabung di ambil dari database
                                               Text(
-                                                data['nominal_pengisian']
-                                                        .toString() +
+                                                NumberFormat.currency(
+                                                      locale: 'id',
+                                                      symbol: 'Rp.',
+                                                      decimalDigits: 2,
+                                                    ).format(data[
+                                                        'nominal_pengisian']) +
                                                     ' / ',
                                                 // tabunganController.tabunganList[0]
                                                 //         .nominal_pengisian
@@ -302,7 +311,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                         ),
                                         alignment: Alignment.center,
                                         child: Text(
-                                          percent.toStringAsFixed(2) + '%',
+                                          percent.toStringAsFixed(0) + '%',
                                           style: const TextStyle(
                                             color: AppColors.white,
                                           ),
@@ -358,7 +367,11 @@ class DetailTabunganWidget extends StatelessWidget {
                                       ),
                                       // Presentase Tabungan
                                       Text(
-                                        data['biaya_terkumpul'].toString(),
+                                        NumberFormat.currency(
+                                          locale: 'id',
+                                          symbol: 'Rp.',
+                                          decimalDigits: 2,
+                                        ).format(data['biaya_terkumpul']),
                                         // tabunganController
                                         //     .tabunganList[0].biaya_terkumpul
                                         //     .toString(),
@@ -383,7 +396,11 @@ class DetailTabunganWidget extends StatelessWidget {
                                       ),
                                       // Presentase Tabungan
                                       Text(
-                                        kurang.toString(),
+                                        NumberFormat.currency(
+                                          locale: 'id',
+                                          symbol: 'Rp.',
+                                          decimalDigits: 2,
+                                        ).format(kurang),
                                         style: const TextStyle(
                                             color: AppColors.black,
                                             fontSize: 14,

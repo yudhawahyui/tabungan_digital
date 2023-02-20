@@ -116,14 +116,14 @@ class TargetNabung extends StatelessWidget {
                                   tabunganController
                                               .tabunganList[index].rencana ==
                                           "bulanan"
-                                      ? Text(
+                                      ? const Text(
                                           " Perbulan",
                                           style: TextStyle(
                                             color: AppColors.white,
                                             fontSize: 16,
                                           ),
                                         )
-                                      : Text(
+                                      : const Text(
                                           " Perhari",
                                           style: TextStyle(
                                             color: AppColors.white,
@@ -137,7 +137,7 @@ class TargetNabung extends StatelessWidget {
                                   // Nominal nabung di ambil dari database
                                   Text(
                                     "Estimasi : " + estimasi_hitung.toString(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: AppColors.white,
                                       fontSize: 16,
                                     ),
@@ -145,14 +145,14 @@ class TargetNabung extends StatelessWidget {
                                   tabunganController
                                               .tabunganList[index].rencana ==
                                           "bulanan"
-                                      ? Text(
+                                      ? const Text(
                                           " Bulan",
                                           style: TextStyle(
                                             color: AppColors.white,
                                             fontSize: 16,
                                           ),
                                         )
-                                      : Text(
+                                      : const Text(
                                           " Hari",
                                           style: TextStyle(
                                             color: AppColors.white,
@@ -185,7 +185,7 @@ class TargetNabung extends StatelessWidget {
                             alignment: Alignment.center,
                             child: Text(
                               percent.toStringAsFixed(2) + "%",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: AppColors.white,
                               ),
                             ),
