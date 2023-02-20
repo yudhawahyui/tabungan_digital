@@ -17,15 +17,9 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
   TambahTabunganPageView({Key? key}) : super(key: key);
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TestController tabunganController = Get.put(TestController());
-  File? image;
-  Future getImage() async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? imagePicked =
-        await _picker.pickImage(source: ImageSource.gallery);
-    image = File(imagePicked!.path);
-    // setState(() {});
-    print(image);
-  }
+
+  TambahTabunganPageController controllerTabungan =
+      Get.put(TambahTabunganPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +82,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                 },
                                 child: GestureDetector(
                                   onTap: () {
-                                    getImage();
+                                    // getImage();
                                   },
                                   child: Container(
                                     width: Get.width * .5,
@@ -379,36 +373,45 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               GestureDetector(
-                                onTap: () async {
-                                  await getImage();
+                                onTap: () {
+                                  controllerTabungan
+                                      .getImage(ImageSource.gallery);
                                 },
-                                child: image != null
-                                    ? Container(
-                                        width: Get.width * .5,
-                                        height: Get.height * .3,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.primaryBg,
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        child: Image.file(image!,
-                                            fit: BoxFit.cover),
-                                      )
-                                    : Container(
-                                        width: Get.width * .5,
-                                        height: Get.height * .3,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.primaryBg,
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        child: const Center(
-                                          child: Icon(
-                                            UniconsLine.image,
-                                            size: 50,
+                                child: Obx(
+                                  () => controllerTabungan
+                                              .selectedImagePath.value ==
+                                          ''
+                                      ? Container(
+                                          width: Get.width * .5,
+                                          height: Get.height * .3,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryBg,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
                                           ),
+                                          child: Image.file(
+                                              File(
+                                                controllerTabungan
+                                                    .selectedImagePath.value,
+                                              ),
+                                              fit: BoxFit.cover),
+                                        )
+                                      : Container(
+                                          width: Get.width * .5,
+                                          height: Get.height * .3,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primaryBg,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: Image.file(
+                                              File(
+                                                controllerTabungan
+                                                    .selectedImagePath.value,
+                                              ),
+                                              fit: BoxFit.cover),
                                         ),
-                                      ),
+                                ),
                               ),
                               Container(
                                 width: Get.width * 1,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tabungan_digital/app/modules/wellcome_page/wellcome_page_2/views/wellcome_page_2_view.dart';
+import 'package:tabungan_digital/app/modules/wellcome_page/wellcome_page_1/views/wellcome_page_view.dart';
 import 'package:tabungan_digital/firebase_options.dart';
 import 'package:tabungan_digital/pages/auth.dart';
 
@@ -22,7 +22,7 @@ Future<void> main() async {
       debugShowCheckedModeBanner: false,
       title: "Tabungan Digital App",
       initialRoute: AppPages.INITIAL,
-      home: WellcomePage2View(),
+      home: WellcomePageView(),
       // getPages: AppPages.routes,
     ),
   );

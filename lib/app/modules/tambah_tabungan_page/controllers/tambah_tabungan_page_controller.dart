@@ -4,7 +4,10 @@ import 'package:image_picker/image_picker.dart';
 class TambahTabunganPageController extends GetxController {
   //TODO: Implement TambahTabunganPageController
 
+  var selectedImagePath = ''.obs;
+  var selectedImageSize = ''.obs;
   final count = 0.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -21,11 +24,12 @@ class TambahTabunganPageController extends GetxController {
   }
 
   void increment() => count.value++;
-  // void getImage(ImageSource imageSource) async {
-  //   final pickedFile = await ImagePicker().pickImage(source: imageSource);
-  //   if (pickedFile != null) {
-  //     imagePath.value = pickedFile.path;
-  //   }
-  //   print(imagePath.value);
-  // }
+
+  void getImage(ImageSource imageSource) async {
+    final pickedFile = await ImagePicker().pickImage(source: imageSource);
+    if (pickedFile != null) {
+      selectedImagePath.value = pickedFile.path;
+    }
+    print(selectedImagePath.value);
+  }
 }

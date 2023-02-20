@@ -16,17 +16,6 @@ import '../modules/tercapai_page/bindings/tercapai_page_binding.dart';
 import '../modules/tercapai_page/views/tercapai_page_view.dart';
 import '../modules/wellcome_page/wellcome_page_1/bindings/wellcome_page_binding.dart';
 import '../modules/wellcome_page/wellcome_page_1/views/wellcome_page_view.dart';
-import '../modules/wellcome_page/wellcome_page_2/bindings/wellcome_page_2_binding.dart';
-import '../modules/wellcome_page/wellcome_page_2/views/wellcome_page_2_view.dart';
-import '../modules/wellcome_page/wellcome_page_3/bindings/wellcome_page_3_binding.dart';
-import '../modules/wellcome_page/wellcome_page_3/views/wellcome_page_3_view.dart';
-import '../modules/wellcome_page/wellcome_page_4/bindings/wellcome_page_4_binding.dart';
-import '../modules/wellcome_page/wellcome_page_4/views/wellcome_page_4_view.dart';
-import '../modules/addSavings/bindings/add_savings_binding.dart';
-import '../modules/addSavings/views/add_savings_view.dart';
-import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/views/home_view.dart';
-
 part 'app_routes.dart';
 
 class AppPages {
@@ -85,27 +74,6 @@ class AppPages {
       name: _Paths.DETAIL_TABUNGAN_PAGE,
       page: () => DetailTabunganPageView(),
       binding: DetailTabunganPageBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: const Duration(milliseconds: 250),
-    ),
-    GetPage(
-      name: _Paths.WELLCOME_PAGE_2,
-      page: () => const WellcomePage2View(),
-      binding: WellcomePage2Binding(),
-      transition: Transition.fadeIn,
-      transitionDuration: const Duration(milliseconds: 250),
-    ),
-    GetPage(
-      name: _Paths.WELLCOME_PAGE_3,
-      page: () => const WellcomePage3View(),
-      binding: WellcomePage3Binding(),
-      transition: Transition.fadeIn,
-      transitionDuration: const Duration(milliseconds: 250),
-    ),
-    GetPage(
-      name: _Paths.WELLCOME_PAGE_4,
-      page: () => const WellcomePage4View(),
-      binding: WellcomePage4Binding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 250),
     ),
