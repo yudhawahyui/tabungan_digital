@@ -217,7 +217,9 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                                               5),
                                                     ),
                                                   ),
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    _rencana = "bulanan";
+                                                  },
                                                   child: const Text('Bulanan'),
                                                 ),
                                               ],
@@ -274,21 +276,21 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                         ),
                                         onPressed: () async {
                                           print('tombol simpan ditekan');
-                                          print(
-                                              "tabungan id :" + _id.toString());
-                                          print("email User :" + user.email!);
-                                          print("nama Tabungan: " +
-                                              _nama_tabungan.text);
-                                          print(
-                                              "keterangan:" + _keterangan.text);
-                                          print("Target : " +
-                                              _target_tabungan.text);
-                                          print("Nominal Pengisian : " +
-                                              _nominal_pengisian.text);
-                                          print("Rencana : " + _rencana);
-                                          print("sekarang: " + now.toString());
-                                          print('formkey :' +
-                                              _formKey.currentState.toString());
+                                          // print(
+                                          //     "tabungan id :" + _id.toString());
+                                          // print("email User :" + user.email!);
+                                          // print("nama Tabungan: " +
+                                          //     _nama_tabungan.text);
+                                          // print(
+                                          //     "keterangan:" + _keterangan.text);
+                                          // print("Target : " +
+                                          //     _target_tabungan.text);
+                                          // print("Nominal Pengisian : " +
+                                          //     _nominal_pengisian.text);
+                                          // print("Rencana : " + _rencana);
+                                          // print("sekarang: " + now.toString());
+                                          // print('formkey :' +
+                                          //     _formKey.currentState.toString());
 
                                           if (_formKey.currentState!
                                               .validate()) {
@@ -308,19 +310,12 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                                     dibuat: now.toString(),
                                                     biaya_terkumpul: 0,
                                                     gambar: "not Yet There",
-                                                    rencana: "harian",
+                                                    rencana: _rencana,
                                                     nominal_pengisian:
                                                         int.parse(
                                                             _nominal_pengisian
                                                                 .text));
-                                            if (response != 200) {
-                                              Get.snackbar("Gagal",
-                                                  "Gagal menambahkan tabungan");
-                                            } else {
-                                              Get.snackbar("Berhasil",
-                                                  "Berhasil menambahkan tabungan");
-                                            }
-
+                                            // update data
                                             Get.to(
                                               () => HomePageView(
                                                 email: _user_email.text,

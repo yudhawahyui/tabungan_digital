@@ -13,6 +13,8 @@ class TargetNabung extends StatelessWidget {
   }) : super(key: key);
 
   TestController tabunganController = Get.put(TestController());
+  var estimasi_hitung;
+  var percent;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,20 @@ class TargetNabung extends StatelessWidget {
       init: TestController(),
       initState: (_) {},
       builder: (controller) {
+        // estimasi = tabunganController.tabunganList[index].rencana == 'harian'
+        //     ? estimasi_hitung =
+        //         tabunganController.tabunganList[index].target_tabungan /
+        //             tabunganController.tabunganList[index].nominal_pengisian
+        //     : estimasi_hitung =
+        //         tabunganController.tabunganList[index].target_tabungan /
+        //             tabunganController.tabunganList[index].nominal_pengisian *
+        //             30;
+        estimasi_hitung =
+            tabunganController.tabunganList[index].target_tabungan /
+                tabunganController.tabunganList[index].nominal_pengisian;
+        percent = tabunganController.tabunganList[index].nominal_pengisian /
+            tabunganController.tabunganList[index].target_tabungan *
+            100;
         return Container(
           margin: const EdgeInsets.all(8),
           child: Column(
@@ -97,32 +113,59 @@ class TargetNabung extends StatelessWidget {
                                       fontSize: 16,
                                     ),
                                   ),
-                                  const Text(
-                                    " Perbulan",
-                                    style: TextStyle(
-                                      color: AppColors.white,
-                                      fontSize: 16,
-                                    ),
-                                  ),
+                                  tabunganController
+                                              .tabunganList[index].rencana ==
+                                          "bulanan"
+                                      ? Text(
+                                          " Perbulan",
+                                          style: TextStyle(
+                                            color: AppColors.white,
+                                            fontSize: 16,
+                                          ),
+                                        )
+                                      : Text(
+                                          " Perhari",
+                                          style: TextStyle(
+                                            color: AppColors.white,
+                                            fontSize: 16,
+                                          ),
+                                        ),
                                 ],
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   // Nominal nabung di ambil dari database
                                   Text(
-                                    "1000",
+                                    "Estimasi : " + estimasi_hitung.toString(),
                                     style: TextStyle(
                                       color: AppColors.white,
                                       fontSize: 16,
                                     ),
                                   ),
-                                  Text(
-                                    " Bulan Lagi",
-                                    style: TextStyle(
-                                      color: AppColors.white,
-                                      fontSize: 16,
-                                    ),
-                                  ),
+                                  tabunganController
+                                              .tabunganList[index].rencana ==
+                                          "bulanan"
+                                      ? Text(
+                                          " Bulan",
+                                          style: TextStyle(
+                                            color: AppColors.white,
+                                            fontSize: 16,
+                                          ),
+                                        )
+                                      : Text(
+                                          " Hari",
+                                          style: TextStyle(
+                                            color: AppColors.white,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                  // Text(
+                                  //   " Bulan Lagi",
+                                  //   style: TextStyle(
+                                  //     color: AppColors.white,
+                                  //     fontSize: 16,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ],
@@ -140,8 +183,8 @@ class TargetNabung extends StatelessWidget {
                               ),
                             ),
                             alignment: Alignment.center,
-                            child: const Text(
-                              '0%',
+                            child: Text(
+                              percent.toStringAsFixed(2) + "%",
                               style: TextStyle(
                                 color: AppColors.white,
                               ),

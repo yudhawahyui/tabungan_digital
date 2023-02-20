@@ -10,6 +10,7 @@ class TabunganModel {
   String gambar;
   String rencana;
   int nominal_pengisian;
+  String docId;
 
   TabunganModel(
       {required this.tabungan_id,
@@ -22,9 +23,6 @@ class TabunganModel {
       required this.biaya_terkumpul,
       required this.gambar,
       required this.rencana,
+      required this.docId,
       required this.nominal_pengisian});
-
-  
 }
-
-

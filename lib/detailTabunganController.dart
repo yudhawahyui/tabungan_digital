@@ -1,22 +1,25 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:tabungan_digital/custom_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class TercapaiController extends GetxController {
+class detailTabungan extends GetxController {
+  int tabunganId;
+
+  detailTabungan({required this.tabunganId});
   bool isLoading = false;
   var tabunganList = <TabunganModel>[].obs;
-  List data = [];
   final user = FirebaseAuth.instance.currentUser!;
 
   void onInit() async {
-    super.onInit();
     // getData();
+    super.onInit();
     await FirebaseFirestore.instance
         .collection('tabungan')
         .orderBy('dibuat')
         .where('user_email', isEqualTo: user.email!)
-        .where('status', isEqualTo: 'tercapai')
+        .where('tabungan_id', isEqualTo: tabunganId)
         .get()
         .then((QuerySnapshot) {
       QuerySnapshot.docs.forEach((element) {
@@ -36,19 +39,22 @@ class TercapaiController extends GetxController {
             docId: element.id,
           ),
         );
+        // insert 1 row to tabunganList Data : valid
       });
     });
-    print('testing Tercapai');
+
+    print('testing Detail Tabungan');
     update();
   }
 
-  Future<List> getData() async {
+  void getData() async {
     bool isLoading = true;
     try {
       QuerySnapshot tabungans = await FirebaseFirestore.instance
           .collection('tabungan')
           .orderBy('dibuat')
           .where('user_email', isEqualTo: user.email!)
+          .where('tabungan_id', isEqualTo: tabunganId)
           .get();
 
       if (tabungans != null) {
@@ -82,12 +88,11 @@ class TercapaiController extends GetxController {
               docId: tabungan.id));
         }
 
-        return tabunganList;
+        update();
         isLoading = false;
         // set state
         // if update() is called skip this line
 
-        update(['TestController']);
         // exit loop
         // refresh it one time
       }
@@ -95,7 +100,7 @@ class TercapaiController extends GetxController {
       print(e.toString());
       Get.snackbar('Error', '${e.toString()}');
     }
-    return tabunganList;
+    // return tabunganList;
   }
 
   // Stream<DocumentSnapshot<Map<String, dynamic>>> TampilData() async* {

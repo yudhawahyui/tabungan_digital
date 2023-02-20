@@ -54,7 +54,6 @@ class FirebaseCrud {
       // response.code = 400;
       // response.message = 'Tabungan gagal ditambahkan';
     });
-
     // return back to home page;
     return response;
   }

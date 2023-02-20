@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tabungan_digital/app/modules/home_page/controllers/tabungan_view_controller.dart';
+import 'package:tabungan_digital/app/modules/tercapai_page/controllers/tercapai_page_controller.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
 
 class TargetSelesai extends StatelessWidget {
@@ -10,7 +11,7 @@ class TargetSelesai extends StatelessWidget {
     required this.index,
   }) : super(key: key);
 
-  TestController tabunganController = Get.put(TestController());
+  TercapaiController tabunganController = Get.put(TercapaiController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +49,10 @@ class TargetSelesai extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(top: 16, bottom: 16),
                         child: Text(
-                          "Supra Bapak",
+                          tabunganController.tabunganList[index].nama_tabungan,
                           style: TextStyle(
                               color: AppColors.white,
                               fontSize: 24,
@@ -76,8 +77,10 @@ class TargetSelesai extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 // Target Tabungan
-                                const Text(
-                                  "Rp.2.051.000.000",
+                                Text(
+                                  tabunganController
+                                      .tabunganList[index].target_tabungan
+                                      .toString(),
                                   style: TextStyle(
                                       color: AppColors.white,
                                       fontSize: 16,

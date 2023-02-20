@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class historyNabung extends StatelessWidget {
-  const historyNabung({
+  var docId;
+  historyNabung({
     Key? key,
+    required this.docId,
   }) : super(key: key);
+
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +35,8 @@ class historyNabung extends StatelessWidget {
     );
   }
 }
+
+
 
 class listNabung extends StatelessWidget {
   const listNabung({

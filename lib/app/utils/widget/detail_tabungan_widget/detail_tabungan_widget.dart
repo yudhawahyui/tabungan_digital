@@ -2,23 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
 import 'package:tabungan_digital/app/modules/home_page/controllers/tabungan_view_controller.dart';
+import 'package:tabungan_digital/app/modules/home_page/views/home_page_view.dart';
+import 'package:tabungan_digital/app/modules/login_page/views/login_page_view.dart';
+import 'package:tabungan_digital/app/modules/tercapai_page/controllers/tercapai_page_controller.dart';
+import 'package:tabungan_digital/app/modules/wellcome_page/wellcome_page_1/views/wellcome_page_view.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
 import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/list_nabung.dart';
 import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/modal_ambil_tabungan.dart';
+import 'package:tabungan_digital/detailTabunganController.dart';
+import 'package:tabungan_digital/detailTabunganController2.dart';
 import 'package:unicons/unicons.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+// import 'dart:html';
 
 class DetailTabunganWidget extends StatelessWidget {
-  var index;
+  String docId;
   DetailTabunganWidget({
     Key? key,
-    required this.index,
+    required this.docId,
   }) : super(key: key);
 
-  TestController tabunganController = Get.put(TestController());
+  var estimasi_hitung;
+  var percent;
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
-// Android
+    final FirestoreController tabunganController =
+        Get.put(FirestoreController(docId: docId));
+    // final FirestoreController tabunganController =
+    // Get.put(FirestoreController(tabunganId: tabunganId));
+    // estimasi_hitung = tabunganController.tabunganList[0].target_tabungan /
+    //     tabunganController.tabunganList[0].nominal_pengisian;
+    // percent = tabunganController.tabunganList[0].nominal_pengisian /
+    //         tabunganController.tabunganList[0].target_tabungan *
+    //         100;
     return context.isPhone
         ? Scaffold(
             // FAB
@@ -145,6 +163,15 @@ class DetailTabunganWidget extends StatelessWidget {
                         children: [
                           IconButton(
                             onPressed: () {
+                              // tabunganController.dispose();
+                              // refresh tabungan
+                              // Go to initial page
+                              // Get.offAll(() => HomePageView(
+                              //       email: user.email!,
+                              //     ));
+                              // location.reload();
+                              // refresh the app
+                              // Get.offAll(() => HomePageView(
                               Get.back();
                             },
                             icon: const Icon(UniconsLine.angle_left_b),
@@ -157,220 +184,262 @@ class DetailTabunganWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryBg,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // image
-                                AspectRatio(
-                                  aspectRatio: 500 / 250,
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: AssetImage(
-                                          'assets/images/mazda-rx7.png',
+                      Obx(() {
+                        var data = tabunganController.documents[0]!.data()
+                            as Map<String, dynamic>;
+                        // convert data to map
+                        estimasi_hitung =
+                            data['target_tabungan'] / data['nominal_pengisian'];
+                        percent = data['nominal_pengisian'] /
+                            data['target_tabungan'] *
+                            100;
+                        var kurang =
+                            data['target_tabungan'] - data['nominal_pengisian'];
+                        print(data);
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: AppColors.primaryBg,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // image
+                                  AspectRatio(
+                                    aspectRatio: 500 / 250,
+                                    child: Container(
+                                      decoration: const BoxDecoration(
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: AssetImage(
+                                            'assets/images/mazda-rx7.png',
+                                          ),
                                         ),
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(5),
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 16, bottom: 16),
-                                  child: Text(
-                                    "Supra Bapak",
-                                    style: TextStyle(
-                                        color: AppColors.white,
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                // Total Tabungan, Target Tabungan, Presentase Tabungan
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        // Target Tabungan
-                                        const Text(
-                                          "Rp.2.051.000.000",
-                                          style: TextStyle(
-                                              color: AppColors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Row(
-                                          children: const [
-                                            // Nominal nabung di ambil dari database
-                                            Text(
-                                              "Rp.135.000",
-                                              style: TextStyle(
-                                                color: AppColors.white,
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                            Text(
-                                              " Perbulan",
-                                              style: TextStyle(
-                                                color: AppColors.white,
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    // Presentase Tabungan
-                                    Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        color: AppColors.primaryBg,
-                                        borderRadius: BorderRadius.circular(25),
-                                        border: Border.all(
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 16, bottom: 16),
+                                    child: Text(
+                                      data['nama_tabungan'],
+                                      style: TextStyle(
                                           color: AppColors.white,
-                                          width: 4,
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  // Total Tabungan, Target Tabungan, Presentase Tabungan
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          // Target Tabungan
+                                          Text(
+                                            data['target_tabungan'].toString(),
+                                            // tabunganController
+                                            //     .tabunganList[0].target_tabungan
+                                            //     .toString(),
+                                            style: TextStyle(
+                                                color: AppColors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          Row(
+                                            children: [
+                                              // Nominal nabung di ambil dari database
+                                              Text(
+                                                data['nominal_pengisian']
+                                                        .toString() +
+                                                    ' / ',
+                                                // tabunganController.tabunganList[0]
+                                                //         .nominal_pengisian
+                                                //         .toString() +
+                                                // " / ",
+                                                style: TextStyle(
+                                                  color: AppColors.white,
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+
+                                              Text(
+                                                data['rencana'].toString(),
+                                                // tabunganController
+                                                //     .tabunganList[0].rencana,
+                                                style: TextStyle(
+                                                  color: AppColors.white,
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      // Presentase Tabungan
+                                      Container(
+                                        height: 50,
+                                        width: 50,
+                                        decoration: BoxDecoration(
+                                          color: AppColors.primaryBg,
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          border: Border.all(
+                                            color: AppColors.white,
+                                            width: 4,
+                                          ),
+                                        ),
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          percent.toStringAsFixed(2) + '%',
+                                          style: TextStyle(
+                                            color: AppColors.white,
+                                          ),
                                         ),
                                       ),
-                                      alignment: Alignment.center,
-                                      child: const Text(
-                                        '0%',
+                                    ],
+                                  ),
+                                  // Line
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 16, bottom: 16),
+                                    child: Container(
+                                      height: 2,
+                                      width: Get.width * 1,
+                                      color: AppColors.white,
+                                    ),
+                                  ),
+                                  // Detail Lebih lanjut ( dibuat, di kumpulkan, kurang, estimasi waktu)
+                                  // Dibuat
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Dibuat",
                                         style: TextStyle(
                                           color: AppColors.white,
+                                          fontSize: 16,
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                // Line
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 16, bottom: 16),
-                                  child: Container(
-                                    height: 2,
-                                    width: Get.width * 1,
-                                    color: AppColors.white,
+                                      // Presentase Tabungan
+                                      Text(
+                                        data['dibuat'],
+                                        // tabunganController.tabunganList[0].dibuat,
+                                        style: TextStyle(
+                                            color: AppColors.white,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                // Detail Lebih lanjut ( dibuat, di kumpulkan, kurang, estimasi waktu)
-                                // Dibuat
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Dibuat",
-                                      style: TextStyle(
-                                        color: AppColors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    // Presentase Tabungan
-                                    Text(
-                                      '23 Jan 2023',
-                                      style: TextStyle(
+                                  // Dikumpulkan
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Dikumpulkan",
+                                        style: TextStyle(
                                           color: AppColors.white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                // Dikumpulkan
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Dikumpulkan",
-                                      style: TextStyle(
-                                        color: AppColors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    // Presentase Tabungan
-                                    Text(
-                                      'Rp.135.000',
-                                      style: TextStyle(
-                                          color: AppColors.success,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                // Kurang
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Kurang",
-                                      style: TextStyle(
-                                        color: AppColors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    // Presentase Tabungan
-                                    Text(
-                                      'Rp.2.050.865.000',
-                                      style: TextStyle(
-                                          color: AppColors.black,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text(
-                                      "Estimasi Waktu",
-                                      style: TextStyle(
-                                        color: AppColors.white,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    // Presentase Tabungan
-                                    Row(
-                                      children: const [
-                                        Text(
-                                          '1.000',
-                                          style: TextStyle(
-                                              color: AppColors.white,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold),
+                                          fontSize: 16,
                                         ),
-                                        Text(
-                                          ' Bulan',
-                                          style: TextStyle(
-                                              color: AppColors.white,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold),
+                                      ),
+                                      // Presentase Tabungan
+                                      Text(
+                                        data['biaya_terkumpul'].toString(),
+                                        // tabunganController
+                                        //     .tabunganList[0].biaya_terkumpul
+                                        //     .toString(),
+                                        style: TextStyle(
+                                            color: AppColors.success,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                  // Kurang
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Kurang",
+                                        style: TextStyle(
+                                          color: AppColors.white,
+                                          fontSize: 16,
                                         ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                      ),
+                                      // Presentase Tabungan
+                                      Text(
+                                        kurang.toString(),
+                                        style: TextStyle(
+                                            color: AppColors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text(
+                                        "Estimasi Waktu",
+                                        style: TextStyle(
+                                          color: AppColors.white,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                      // Presentase Tabungan
+                                      Row(
+                                        children: [
+                                          Text(
+                                            estimasi_hitung.toString(),
+                                            style: TextStyle(
+                                                color: AppColors.white,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          data['rencana'] == 'Hari'
+                                              ? const Text(
+                                                  ' Hari',
+                                                  style: TextStyle(
+                                                      color: AppColors.white,
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )
+                                              : const Text(
+                                                  ' Bulan',
+                                                  style: TextStyle(
+                                                      color: AppColors.white,
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ),
+                          // clear data
+                        );
+                      }),
                     ],
                   ),
                   // History Tabungan
@@ -385,7 +454,7 @@ class DetailTabunganWidget extends StatelessWidget {
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  const historyNabung(),
+                  historyNabung(docId: docId),
                 ],
               ),
             ),
@@ -406,6 +475,9 @@ class DetailTabunganWidget extends StatelessWidget {
                         children: [
                           IconButton(
                             onPressed: () {
+                              // dispose controller
+                              print(tabunganController.documents);
+                              tabunganController.documents.clear();
                               Get.back();
                             },
                             icon: const Icon(UniconsLine.angle_left_b),
@@ -464,8 +536,9 @@ class DetailTabunganWidget extends StatelessWidget {
                                             padding: const EdgeInsets.only(
                                                 top: 16, bottom: 16),
                                             child: Text(
-                                              tabunganController.tabunganList[0]
-                                                  .nama_tabungan,
+                                              'test',
+                                              // tabunganController.tabunganList[0]
+                                              //     .nama_tabungan,
                                               style: const TextStyle(
                                                   color: AppColors.white,
                                                   fontSize: 24,
@@ -668,7 +741,9 @@ class DetailTabunganWidget extends StatelessWidget {
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  const historyNabung(),
+                  historyNabung(
+                    docId: docId,
+                  ),
                 ],
               ),
             ),
