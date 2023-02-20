@@ -172,7 +172,7 @@ class DetailTabunganWidget extends StatelessWidget {
                               // location.reload();
                               // refresh the app
                               // Get.offAll(() => HomePageView(
-                              Get.back();
+                              Navigator.pop(context);
                             },
                             icon: const Icon(UniconsLine.angle_left_b),
                           ),
@@ -185,7 +185,7 @@ class DetailTabunganWidget extends StatelessWidget {
                         ],
                       ),
                       Obx(() {
-                        var data = tabunganController.documents[0]!.data()
+                        var data = tabunganController.documents[0].data()
                             as Map<String, dynamic>;
                         // convert data to map
                         estimasi_hitung =
@@ -227,11 +227,11 @@ class DetailTabunganWidget extends StatelessWidget {
                                     ),
                                   ),
                                   Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 16, bottom: 16),
+                                    padding: const EdgeInsets.only(
+                                        top: 16, bottom: 16),
                                     child: Text(
                                       data['nama_tabungan'],
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: AppColors.white,
                                           fontSize: 24,
                                           fontWeight: FontWeight.bold),
@@ -252,7 +252,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                             // tabunganController
                                             //     .tabunganList[0].target_tabungan
                                             //     .toString(),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: AppColors.white,
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold),
@@ -268,7 +268,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                                 //         .nominal_pengisian
                                                 //         .toString() +
                                                 // " / ",
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: AppColors.white,
                                                   fontSize: 16,
                                                 ),
@@ -278,7 +278,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                                 data['rencana'].toString(),
                                                 // tabunganController
                                                 //     .tabunganList[0].rencana,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: AppColors.white,
                                                   fontSize: 16,
                                                 ),
@@ -303,7 +303,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                         alignment: Alignment.center,
                                         child: Text(
                                           percent.toStringAsFixed(2) + '%',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: AppColors.white,
                                           ),
                                         ),
@@ -326,7 +326,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
+                                      const Text(
                                         "Dibuat",
                                         style: TextStyle(
                                           color: AppColors.white,
@@ -337,7 +337,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                       Text(
                                         data['dibuat'],
                                         // tabunganController.tabunganList[0].dibuat,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: AppColors.white,
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold),
@@ -349,7 +349,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
+                                      const Text(
                                         "Dikumpulkan",
                                         style: TextStyle(
                                           color: AppColors.white,
@@ -362,7 +362,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                         // tabunganController
                                         //     .tabunganList[0].biaya_terkumpul
                                         //     .toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: AppColors.success,
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold),
@@ -374,7 +374,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
+                                      const Text(
                                         "Kurang",
                                         style: TextStyle(
                                           color: AppColors.white,
@@ -384,7 +384,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                       // Presentase Tabungan
                                       Text(
                                         kurang.toString(),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: AppColors.black,
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold),
@@ -407,7 +407,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                         children: [
                                           Text(
                                             estimasi_hitung.toString(),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 color: AppColors.white,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.bold),
@@ -521,7 +521,7 @@ class DetailTabunganWidget extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 16,
                                     ),
                                     Container(
@@ -532,14 +532,14 @@ class DetailTabunganWidget extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
+                                          const Padding(
+                                            padding: EdgeInsets.only(
                                                 top: 16, bottom: 16),
                                             child: Text(
                                               'test',
                                               // tabunganController.tabunganList[0]
                                               //     .nama_tabungan,
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                   color: AppColors.white,
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),

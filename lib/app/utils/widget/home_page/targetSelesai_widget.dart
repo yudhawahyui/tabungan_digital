@@ -1,6 +1,6 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tabungan_digital/app/modules/home_page/controllers/tabungan_view_controller.dart';
 import 'package:tabungan_digital/app/modules/tercapai_page/controllers/tercapai_page_controller.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
 
@@ -50,10 +50,10 @@ class TargetSelesai extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 16, bottom: 16),
+                        padding: const EdgeInsets.only(top: 16, bottom: 16),
                         child: Text(
                           tabunganController.tabunganList[index].nama_tabungan,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: AppColors.white,
                               fontSize: 24,
                               fontWeight: FontWeight.bold),
@@ -64,7 +64,7 @@ class TargetSelesai extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            padding: EdgeInsets.all(8),
+                            padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: AppColors.primaryBg,
                               borderRadius: BorderRadius.circular(5),
@@ -78,10 +78,15 @@ class TargetSelesai extends StatelessWidget {
                               children: [
                                 // Target Tabungan
                                 Text(
-                                  tabunganController
-                                      .tabunganList[index].target_tabungan
-                                      .toString(),
-                                  style: TextStyle(
+                                  NumberFormat.currency(
+                                    locale: 'id',
+                                    symbol: 'Rp. ',
+                                    decimalDigits: 2,
+                                  ).format(
+                                    tabunganController
+                                        .tabunganList[index].target_tabungan,
+                                  ),
+                                  style: const TextStyle(
                                       color: AppColors.white,
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold),
