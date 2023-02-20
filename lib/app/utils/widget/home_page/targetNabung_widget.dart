@@ -13,8 +13,8 @@ class TargetNabung extends StatelessWidget {
   }) : super(key: key);
 
   TestController tabunganController = Get.put(TestController());
-  var estimasi;
   var estimasi_hitung;
+  var percent;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +33,9 @@ class TargetNabung extends StatelessWidget {
         estimasi_hitung =
             tabunganController.tabunganList[index].target_tabungan /
                 tabunganController.tabunganList[index].nominal_pengisian;
+        percent = tabunganController.tabunganList[index].nominal_pengisian /
+            tabunganController.tabunganList[index].target_tabungan *
+            100;
         return Container(
           margin: const EdgeInsets.all(8),
           child: Column(
@@ -180,8 +183,8 @@ class TargetNabung extends StatelessWidget {
                               ),
                             ),
                             alignment: Alignment.center,
-                            child: const Text(
-                              '0%',
+                            child: Text(
+                              percent.toStringAsFixed(2) + "%",
                               style: TextStyle(
                                 color: AppColors.white,
                               ),

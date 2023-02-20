@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tabungan_digital/app/modules/detail_tabungan_page/views/detail_tabungan_page_view.dart';
 import 'package:tabungan_digital/app/modules/home_page/views/home_page_view.dart';
+import 'package:tabungan_digital/app/modules/login_page/views/login_page_view.dart';
 import 'package:tabungan_digital/app/modules/wellcome_page/wellcome_page_1/views/wellcome_page_view.dart';
 import 'package:tabungan_digital/app/routes/app_pages.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
@@ -33,7 +34,7 @@ class AuthController extends GetxController {
     if (user == null) {
       print("Login Page");
       Get.offAll(
-        () => const WellcomePageView(),
+        () => const LoginPageView(),
       );
     } else {
       Get.offAll(

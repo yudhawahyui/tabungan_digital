@@ -33,6 +33,7 @@ class TercapaiController extends GetxController {
             gambar: element['gambar'],
             rencana: element['rencana'],
             nominal_pengisian: element['nominal_pengisian'],
+            docId: element.id,
           ),
         );
       });
@@ -77,7 +78,8 @@ class TercapaiController extends GetxController {
               biaya_terkumpul: tabungan['biaya_terkumpul'],
               gambar: tabungan['gambar'],
               rencana: tabungan['rencana'],
-              nominal_pengisian: tabungan['nominal_pengisian']));
+              nominal_pengisian: tabungan['nominal_pengisian'],
+              docId: tabungan.id));
         }
 
         return tabunganList;

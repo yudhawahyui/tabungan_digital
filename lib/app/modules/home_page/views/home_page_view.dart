@@ -92,7 +92,6 @@ class HomePageView extends GetView<HomePageController> {
             initState: (_) {},
             builder: (tabunganController) {
               // get Model
-              print(tabunganController);
               return SafeArea(
                 child: DefaultTabController(
                   length: myTab.length,
@@ -127,7 +126,7 @@ class HomePageView extends GetView<HomePageController> {
                           right: 32,
                           top: 16,
                           bottom: 16,
-                        ),
+                        ),  
                         width: Get.width * 1,
                         color: AppColors.white,
                         child: Column(
@@ -184,8 +183,8 @@ class HomePageView extends GetView<HomePageController> {
                                     var route = MaterialPageRoute(
                                       builder: (BuildContext context) =>
                                           DetailTabunganPageView(
-                                        tabunganId: tabunganController
-                                            .tabunganList[index].tabungan_id,
+                                        docId: tabunganController
+                                            .tabunganList[index].docId,
                                       ),
                                     );
                                     Navigator.of(context).push(route);
@@ -316,8 +315,7 @@ class HomeTargetTabungan extends StatelessWidget {
               onTap: () {
                 var route = MaterialPageRoute(
                   builder: (BuildContext context) => DetailTabunganPageView(
-                    tabunganId:
-                        tabunganController.tabunganList[index].tabungan_id,
+                    docId: tabunganController.tabunganList[index].docId,
                   ),
                 );
                 Navigator.of(context).push(route);

@@ -10,16 +10,11 @@ class detailTabungan extends GetxController {
   detailTabungan({required this.tabunganId});
   bool isLoading = false;
   var tabunganList = <TabunganModel>[].obs;
-  List data = [];
   final user = FirebaseAuth.instance.currentUser!;
 
   void onInit() async {
-    super.onInit();
-    print("celar");
-    print(user.email);
-    print(tabunganId);
-    print("celar");
     // getData();
+    super.onInit();
     await FirebaseFirestore.instance
         .collection('tabungan')
         .orderBy('dibuat')
@@ -41,16 +36,18 @@ class detailTabungan extends GetxController {
             gambar: element['gambar'],
             rencana: element['rencana'],
             nominal_pengisian: element['nominal_pengisian'],
+            docId: element.id,
           ),
         );
+        // insert 1 row to tabunganList Data : valid
       });
     });
+
     print('testing Detail Tabungan');
     update();
-    refresh();
   }
 
-  Future<List> getData() async {
+  void getData() async {
     bool isLoading = true;
     try {
       QuerySnapshot tabungans = await FirebaseFirestore.instance
@@ -87,15 +84,15 @@ class detailTabungan extends GetxController {
               biaya_terkumpul: tabungan['biaya_terkumpul'],
               gambar: tabungan['gambar'],
               rencana: tabungan['rencana'],
-              nominal_pengisian: tabungan['nominal_pengisian']));
+              nominal_pengisian: tabungan['nominal_pengisian'],
+              docId: tabungan.id));
         }
 
-        return tabunganList;
+        update();
         isLoading = false;
         // set state
         // if update() is called skip this line
 
-        update(['TestController']);
         // exit loop
         // refresh it one time
       }
@@ -103,7 +100,7 @@ class detailTabungan extends GetxController {
       print(e.toString());
       Get.snackbar('Error', '${e.toString()}');
     }
-    return tabunganList;
+    // return tabunganList;
   }
 
   // Stream<DocumentSnapshot<Map<String, dynamic>>> TampilData() async* {
