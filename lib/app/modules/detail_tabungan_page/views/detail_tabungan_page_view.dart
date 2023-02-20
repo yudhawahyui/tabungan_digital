@@ -7,14 +7,19 @@ import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/detail_
 import '../controllers/detail_tabungan_page_controller.dart';
 
 class DetailTabunganPageView extends GetView<DetailTabunganPageController> {
-  DetailTabunganPageView({Key? key}) : super(key: key);
-  var index;
+  int tabunganId;
+  DetailTabunganPageView({
+    Key? key,
+    required this.tabunganId,
+  }) : super(key: key);
+  // get parameter
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: DetailTabunganWidget(
-          index: index,
+          tabunganId: tabunganId,
         ),
       ),
     );

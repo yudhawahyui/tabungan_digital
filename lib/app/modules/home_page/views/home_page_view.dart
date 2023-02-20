@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:tabungan_digital/app/modules/detail_tabungan_page/views/detail_tabungan_page_view.dart';
 import 'package:tabungan_digital/app/modules/home_page/controllers/tabungan_view_controller.dart';
 import 'package:tabungan_digital/app/modules/tambah_tabungan_page/views/tambah_tabungan_page_view.dart';
+import 'package:tabungan_digital/app/modules/tercapai_page/controllers/tercapai_page_controller.dart';
 import 'package:tabungan_digital/app/modules/tercapai_page/views/tercapai_page_view.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
 import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/modal_ambil_tabungan.dart';
@@ -39,6 +40,8 @@ class HomePageView extends GetView<HomePageController> {
   ];
 
   TestController tabunganController = Get.put(TestController());
+  TercapaiController tercapaiController = Get.put(TercapaiController());
+  var estimasi;
 
   Widget _buildDrawer(context) {
     return SizedBox(
@@ -180,7 +183,10 @@ class HomePageView extends GetView<HomePageController> {
                                     //         .tabunganList[index].tabungan_id);
                                     var route = MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          DetailTabunganPageView(),
+                                          DetailTabunganPageView(
+                                        tabunganId: tabunganController
+                                            .tabunganList[index].tabungan_id,
+                                      ),
                                     );
                                     Navigator.of(context).push(route);
                                   },
@@ -201,9 +207,12 @@ class HomePageView extends GetView<HomePageController> {
                               child: ListView.builder(
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
-                                itemCount: 10,
+                                itemCount:
+                                    tercapaiController.tabunganList.length,
                                 itemBuilder: (context, index) {
-                                  return TargetSelesai(
+                                  return
+                                      // Text("index : $index");
+                                      TargetSelesai(
                                     index: index,
                                   );
                                 },
@@ -306,7 +315,10 @@ class HomeTargetTabungan extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 var route = MaterialPageRoute(
-                  builder: (BuildContext context) => DetailTabunganPageView(),
+                  builder: (BuildContext context) => DetailTabunganPageView(
+                    tabunganId:
+                        tabunganController.tabunganList[index].tabungan_id,
+                  ),
                 );
                 Navigator.of(context).push(route);
               },

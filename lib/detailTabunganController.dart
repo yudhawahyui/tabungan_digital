@@ -1,9 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:tabungan_digital/custom_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class TercapaiController extends GetxController {
+class detailTabungan extends GetxController {
+  int tabunganId;
+
+  detailTabungan({required this.tabunganId});
   bool isLoading = false;
   var tabunganList = <TabunganModel>[].obs;
   List data = [];
@@ -11,12 +15,16 @@ class TercapaiController extends GetxController {
 
   void onInit() async {
     super.onInit();
+    print("celar");
+    print(user.email);
+    print(tabunganId);
+    print("celar");
     // getData();
     await FirebaseFirestore.instance
         .collection('tabungan')
         .orderBy('dibuat')
         .where('user_email', isEqualTo: user.email!)
-        .where('status', isEqualTo: 'tercapai')
+        .where('tabungan_id', isEqualTo: tabunganId)
         .get()
         .then((QuerySnapshot) {
       QuerySnapshot.docs.forEach((element) {
@@ -37,8 +45,9 @@ class TercapaiController extends GetxController {
         );
       });
     });
-    print('testing Tercapai');
+    print('testing Detail Tabungan');
     update();
+    refresh();
   }
 
   Future<List> getData() async {
@@ -48,6 +57,7 @@ class TercapaiController extends GetxController {
           .collection('tabungan')
           .orderBy('dibuat')
           .where('user_email', isEqualTo: user.email!)
+          .where('tabungan_id', isEqualTo: tabunganId)
           .get();
 
       if (tabungans != null) {

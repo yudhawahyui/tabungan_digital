@@ -13,7 +13,7 @@ import 'package:unicons/unicons.dart';
 
 import '../controllers/tercapai_page_controller.dart';
 
-class TercapaiPageView extends GetView<TercapaiPageController> {
+class TercapaiPageView extends GetView<TercapaiController> {
   String email;
   TercapaiPageView({
     Key? key,
@@ -36,7 +36,7 @@ class TercapaiPageView extends GetView<TercapaiPageController> {
     ),
   ];
 
-  TestController tabunganController = Get.put(TestController());
+  TercapaiController tabunganController = Get.put(TercapaiController());
 
   Widget _buildDrawer(context) {
     return SizedBox(
@@ -82,11 +82,10 @@ class TercapaiPageView extends GetView<TercapaiPageController> {
     // android
     var state;
     return context.isPhone
-        ? GetBuilder<TestController>(
-            init: TestController(),
+        ? GetBuilder<TercapaiController>(
+            init: TercapaiController(),
             initState: (_) {},
             builder: (tabunganController) {
-              tabunganController.getData();
               return SafeArea(
                 child: DefaultTabController(
                   length: myTab.length,
@@ -177,7 +176,10 @@ class TercapaiPageView extends GetView<TercapaiPageController> {
                                     //         .tabunganList[index].tabungan_id);
                                     var route = MaterialPageRoute(
                                       builder: (BuildContext context) =>
-                                          DetailTabunganPageView(),
+                                          DetailTabunganPageView(
+                                        tabunganId: tabunganController
+                                            .tabunganList[index].tabungan_id,
+                                      ),
                                     );
                                     Navigator.of(context).push(route);
                                   },
@@ -198,7 +200,8 @@ class TercapaiPageView extends GetView<TercapaiPageController> {
                               child: ListView.builder(
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
-                                itemCount: 10,
+                                itemCount:
+                                    tabunganController.tabunganList.length + 1,
                                 itemBuilder: (context, index) {
                                   return TargetSelesai(
                                     index: index,
@@ -216,11 +219,10 @@ class TercapaiPageView extends GetView<TercapaiPageController> {
             },
           )
         // Web
-        : GetBuilder<TestController>(
-            init: TestController(),
+        : GetBuilder<TercapaiController>(
+            init: TercapaiController(),
             initState: (_) {},
             builder: (tabunganController) {
-              tabunganController.getData();
               return Scaffold(
                 drawer: _buildDrawer(context),
                 appBar: AppBar(
@@ -265,7 +267,8 @@ class HomeTargetTabungan extends StatelessWidget {
   HomeTargetTabungan({
     super.key,
   });
-  TestController tabunganController = Get.put(TestController());
+  TercapaiController tabunganController = Get.put(TercapaiController());
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -273,12 +276,15 @@ class HomeTargetTabungan extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
           ),
-          itemCount: tabunganController.tabunganList.length,
+          itemCount: tabunganController.tabunganList.length + 1,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
                 var route = MaterialPageRoute(
-                  builder: (BuildContext context) => DetailTabunganPageView(),
+                  builder: (BuildContext context) => DetailTabunganPageView(
+                    tabunganId:
+                        tabunganController.tabunganList[index].tabungan_id,
+                  ),
                 );
                 Navigator.of(context).push(route);
               },

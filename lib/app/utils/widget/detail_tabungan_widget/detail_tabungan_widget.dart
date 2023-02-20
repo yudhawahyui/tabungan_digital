@@ -2,23 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
 import 'package:tabungan_digital/app/modules/home_page/controllers/tabungan_view_controller.dart';
+import 'package:tabungan_digital/app/modules/tercapai_page/controllers/tercapai_page_controller.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
 import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/list_nabung.dart';
 import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/modal_ambil_tabungan.dart';
+import 'package:tabungan_digital/detailTabunganController.dart';
 import 'package:unicons/unicons.dart';
 
 class DetailTabunganWidget extends StatelessWidget {
-  var index;
+  var tabunganId;
   DetailTabunganWidget({
     Key? key,
-    required this.index,
+    required this.tabunganId,
   }) : super(key: key);
-
-  TestController tabunganController = Get.put(TestController());
 
   @override
   Widget build(BuildContext context) {
-// Android
+    detailTabungan tabunganController =
+        Get.put(detailTabungan(tabunganId: tabunganId));
+
     return context.isPhone
         ? Scaffold(
             // FAB
@@ -187,10 +189,11 @@ class DetailTabunganWidget extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                const Padding(
+                                Padding(
                                   padding: EdgeInsets.only(top: 16, bottom: 16),
                                   child: Text(
-                                    "Supra Bapak",
+                                    tabunganController
+                                        .tabunganList[0].nama_tabungan,
                                     style: TextStyle(
                                         color: AppColors.white,
                                         fontSize: 24,

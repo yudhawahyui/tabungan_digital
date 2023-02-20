@@ -83,7 +83,9 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DETAIL_TABUNGAN_PAGE,
-      page: () => DetailTabunganPageView(),
+      page: () => DetailTabunganPageView(
+        tabunganId: Get.arguments,
+      ),
       binding: DetailTabunganPageBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 250),
