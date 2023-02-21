@@ -210,7 +210,7 @@ class TercapaiPageView extends GetView<TercapaiController> {
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
                                 itemCount:
-                                    tabunganController.tabunganList.length + 1,
+                                    tabunganController.tabunganList.length,
                                 itemBuilder: (context, index) {
                                   return TargetSelesai(
                                     index: index,
@@ -282,10 +282,11 @@ class HomeTargetTabungan extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: GridView.builder(
+          padding: EdgeInsets.all(10),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
           ),
-          itemCount: tabunganController.tabunganList.length + 1,
+          itemCount: tabunganController.tabunganList.length,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
@@ -303,7 +304,7 @@ class HomeTargetTabungan extends StatelessWidget {
                 );
                 Navigator.of(context).push(route);
               },
-              child: TargetNabung(
+              child: TargetSelesai(
                 index: index,
               ),
             );

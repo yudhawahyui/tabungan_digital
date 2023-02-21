@@ -440,13 +440,13 @@ class DetailTabunganWidget extends StatelessWidget {
                                       Row(
                                         children: [
                                           Text(
-                                            estimasi_hitung.toString(),
+                                            estimasi_hitung.toStringAsFixed(0),
                                             style: const TextStyle(
                                                 color: AppColors.white,
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                          data['rencana'] == 'Hari'
+                                          data['rencana'] == 'harian'
                                               ? const Text(
                                                   ' Hari',
                                                   style: TextStyle(
@@ -725,12 +725,11 @@ class DetailTabunganWidget extends StatelessWidget {
                                                       // Target Tabungan
                                                       Text(
                                                         NumberFormat.currency(
-                                                              locale: 'id',
-                                                              symbol: 'Rp.',
-                                                              decimalDigits: 2,
-                                                            ).format(data[
-                                                                'target_tabungan']) +
-                                                            ' / ',
+                                                          locale: 'id',
+                                                          symbol: 'Rp.',
+                                                          decimalDigits: 2,
+                                                        ).format(data[
+                                                            'target_tabungan']),
                                                         style: const TextStyle(
                                                             color:
                                                                 AppColors.white,
@@ -759,8 +758,8 @@ class DetailTabunganWidget extends StatelessWidget {
                                                               fontSize: 16,
                                                             ),
                                                           ),
-                                                          const Text(
-                                                            " Perbulan",
+                                                          Text(
+                                                            data['rencana'],
                                                             style: TextStyle(
                                                               color: AppColors
                                                                   .white,
@@ -900,13 +899,14 @@ class DetailTabunganWidget extends StatelessWidget {
                                         Row(
                                           children: [
                                             Text(
-                                              estimasi_hitung.toString(),
+                                              estimasi_hitung
+                                                  .toStringAsFixed(0),
                                               style: const TextStyle(
                                                   color: AppColors.white,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.bold),
                                             ),
-                                            data['rencana'] == 'Hari'
+                                            data['rencana'] == 'harian'
                                                 ? const Text(
                                                     ' Hari',
                                                     style: TextStyle(
