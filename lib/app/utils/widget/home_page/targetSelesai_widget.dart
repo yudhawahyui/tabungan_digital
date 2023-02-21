@@ -39,8 +39,8 @@ class TargetSelesai extends StatelessWidget {
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage(
-                                'assets/images/mazda-rx7.png',
+                              image: NetworkImage(
+                                'https://source.unsplash.com/random/500x250?keyboard-mechanical',
                               ),
                             ),
                             borderRadius: BorderRadius.all(
