@@ -286,6 +286,9 @@ class modalTambahTabungan extends StatelessWidget {
                     labelStyle: TextStyle(color: AppColors.white),
                   ),
                 ),
+                SizedBox(
+                  height: Get.height * 0.02,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
