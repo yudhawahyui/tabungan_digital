@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:tabungan_digital/app/modules/register_page/register_page_1/views/register_page_view.dart';
 import 'package:tabungan_digital/app/modules/register_page/register_page_2/views/register_page_2_view.dart';
 import 'package:tabungan_digital/app/routes/app_pages.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
@@ -119,20 +120,20 @@ class LoginPageView extends GetView<LoginPageController> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 16),
+                              padding: EdgeInsets.only(top: 16),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Belum memiki akun?',
                                     style: TextStyle(fontSize: 16),
                                   ),
-                                  const SizedBox(width: 6),
+                                  SizedBox(width: 6),
                                   GestureDetector(
                                     onTap: () {
-                                      Get.toNamed('/register-page-2');
+                                      Get.to(() => const RegisterPageView());
                                     },
-                                    child: const Text(
+                                    child: Text(
                                       'Daftar',
                                       style: TextStyle(
                                           color: AppColors.primaryBg,
