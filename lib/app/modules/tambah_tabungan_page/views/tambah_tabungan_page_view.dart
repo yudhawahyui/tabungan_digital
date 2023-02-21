@@ -73,35 +73,6 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                // controller.getImage(ImageSource.gallery);
-                              },
-                              child: GestureDetector(
-                                onTap: () {
-                                  // controller.getImage(ImageSource.gallery);
-                                },
-                                child: GestureDetector(
-                                  onTap: () {
-                                    // getImage();
-                                  },
-                                  child: Container(
-                                    width: Get.width * .5,
-                                    height: Get.height * .3,
-                                    decoration: BoxDecoration(
-                                      color: AppColors.primaryBg,
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    child: const Center(
-                                      child: Icon(
-                                        UniconsLine.image,
-                                        size: 50,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
                             Container(
                               width: Get.width * 1,
                               height: Get.height * .6,
