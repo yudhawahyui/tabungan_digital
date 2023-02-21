@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/modal_ambil_tabungan.dart';
@@ -68,7 +70,8 @@ class FirebaseCrud {
       required String tanggal,
       required String docId,
       required int target,
-      required int biaya_terkumpul}) async {
+      required int biaya_terkumpul,
+      String? validator}) async {
     Responseses response = Responseses();
     DocumentReference documentReferencer = _RecordCollection.doc();
 
@@ -79,6 +82,7 @@ class FirebaseCrud {
       "keterangan": keterangan,
       "status": status,
       "tanggal": tanggal,
+      "validator": validator
     };
 
     print(data);
@@ -105,21 +109,38 @@ class FirebaseCrud {
         docId: docId,
         tabungan_id: tabunganId,
         target: target,
-        nominal: data['nominal']);
+        nominal: data['nominal'],
+        decider: 'add');
+
+    // sleep 3 second
     return response;
   }
 
-  static Future<Responseses> updateTabungan({
-    String? tabungan_id,
-    String? docId,
-    int? target,
-    int? biaya_terkumpul,
-    int? nominal,
-  }) async {
+  static Future<Responseses> updateTabungan(
+      {String? tabungan_id,
+      String? docId,
+      int? target,
+      int? biaya_terkumpul,
+      int? nominal,
+      String? decider}) async {
     var status = 'aktif';
-    var biaya = biaya_terkumpul! + nominal!;
+    var biaya;
 
-    if (biaya >= target!) {
+    if (decider == 'add') {
+      biaya = biaya_terkumpul! + nominal!;
+    } else if (decider == 'minus') {
+      biaya = biaya_terkumpul! - nominal!;
+      if (biaya <= 0) {
+        // snackbar biaya tidak boleh kurang dari 0
+        Get.snackbar('Error', 'Tabungan Kurang tidak boleh menarik Saldo');
+        // sleep 3 detik
+        sleep(Duration(seconds: 3));
+        return Responseses(
+            code: 400, message: 'Biaya tidak boleh kurang dari 0');
+      }
+    }
+
+    if (biaya! >= target!) {
       // update status tabungan
       status = 'tercapai';
     }
@@ -150,6 +171,7 @@ class FirebaseCrud {
       response.message = 'Tabungan gagal diupdate';
     });
     // return back to home page;
+
     return response;
   }
 
@@ -174,6 +196,66 @@ class FirebaseCrud {
       response.code = 400;
       response.message = 'Tabungan gagal dihapus';
     });
+
+    return response;
+  }
+
+  static Future<Responseses> addTarikSaldo({
+    String? recordId,
+    String? tabunganId,
+    int? nominal,
+    String? keterangan,
+    String? status,
+    String? tanggal,
+    String? docId,
+    int? target,
+    int? biaya_terkumpul,
+    String? validator,
+  }) async {
+    Responseses response = Responseses();
+
+    DocumentReference documentReferencer = _RecordCollection.doc();
+
+    if (biaya_terkumpul! <= nominal!) {
+      // snackbar biaya tidak boleh kurang dari 0
+      validator = 'invalid';
+      print("data invalid");
+    }
+
+    Map<String, dynamic> data = <String, dynamic>{
+      "record_id": recordId,
+      "tabungan_id": tabunganId,
+      "nominal": nominal,
+      "keterangan": keterangan,
+      "status": status,
+      "tanggal": tanggal,
+      "validator": validator
+    };
+
+    updateTabungan(
+        biaya_terkumpul: biaya_terkumpul,
+        docId: docId,
+        tabungan_id: tabunganId,
+        target: target,
+        nominal: data['nominal'],
+        decider: 'minus');
+
+    var result = await documentReferencer
+        .set(data)
+        .whenComplete(() => {
+              // snack bar
+              Get.snackbar('Success', 'Tabungan berhasil ditambahkan'),
+              response.code = 200,
+              response.message = 'Tabungan berhasil ditambahkan',
+            })
+        .catchError((e) {
+      print(e.toString());
+      // Get.snackbar('Error', 'Tabungan gagal ditambahkan');
+      // response.code = 400;
+      // response.message = 'Tabungan gagal ditambahkan';
+    });
+    // return back to home page;
+    // send result nominal to update tabungan
 
     return response;
   }

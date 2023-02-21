@@ -6,6 +6,7 @@ class TabunganListModel {
   String status;
   String tanggal;
   String docId;
+  String validator;
 
   TabunganListModel(
       {required this.record_id,
@@ -14,5 +15,6 @@ class TabunganListModel {
       required this.keterangan,
       required this.status,
       required this.docId,
-      required this.tanggal});
+      required this.tanggal,
+      required this.validator});
 }
