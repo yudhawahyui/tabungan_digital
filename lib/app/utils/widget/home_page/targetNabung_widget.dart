@@ -136,7 +136,8 @@ class TargetNabung extends StatelessWidget {
                                 children: [
                                   // Nominal nabung di ambil dari database
                                   Text(
-                                    "Estimasi : " + estimasi_hitung.toString(),
+                                    "Estimasi : " +
+                                        estimasi_hitung.toStringAsFixed(2),
                                     style: const TextStyle(
                                       color: AppColors.white,
                                       fontSize: 16,

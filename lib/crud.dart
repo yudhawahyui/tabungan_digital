@@ -116,7 +116,7 @@ class FirebaseCrud {
     int? biaya_terkumpul,
     int? nominal,
   }) async {
-    var status = 'tabung';
+    var status = 'aktif';
     var biaya = biaya_terkumpul! + nominal!;
 
     if (biaya >= target!) {
