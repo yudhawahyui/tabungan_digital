@@ -179,6 +179,15 @@ class TercapaiPageView extends GetView<TercapaiController> {
                                           DetailTabunganPageView(
                                         docId: tabunganController
                                             .tabunganList[index].docId,
+                                        tabunganId: tabunganController
+                                            .tabunganList[index].tabungan_id
+                                            .toString(),
+                                        biayaTerkumpul: tabunganController
+                                            .tabunganList[index]
+                                            .biaya_terkumpul,
+                                        target: tabunganController
+                                            .tabunganList[index]
+                                            .target_tabungan,
                                       ),
                                     );
                                     Navigator.of(context).push(route);
@@ -283,6 +292,13 @@ class HomeTargetTabungan extends StatelessWidget {
                 var route = MaterialPageRoute(
                   builder: (BuildContext context) => DetailTabunganPageView(
                     docId: tabunganController.tabunganList[index].docId,
+                    tabunganId: tabunganController
+                        .tabunganList[index].tabungan_id
+                        .toString(),
+                    biayaTerkumpul:
+                        tabunganController.tabunganList[index].biaya_terkumpul,
+                    target:
+                        tabunganController.tabunganList[index].target_tabungan,
                   ),
                 );
                 Navigator.of(context).push(route);

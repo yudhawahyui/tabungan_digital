@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:tabungan_digital/app/modules/home_page/controllers/tabungan_view_controller.dart';
 import 'package:tabungan_digital/app/modules/home_page/views/home_page_view.dart';
 import 'package:tabungan_digital/app/modules/login_page/views/login_page_view.dart';
 import 'package:tabungan_digital/app/modules/tercapai_page/controllers/tercapai_page_controller.dart';
 import 'package:tabungan_digital/app/modules/wellcome_page/wellcome_page_1/views/wellcome_page_view.dart';
+import 'package:tabungan_digital/app/routes/app_pages.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
 import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/list_nabung.dart';
 import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/modal_ambil_tabungan.dart';
@@ -18,9 +20,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class DetailTabunganWidget extends StatelessWidget {
   String docId;
+  String tabunganId;
+  var target;
+  var biaya_terkumpul;
+
+  // constructor
   DetailTabunganWidget({
     Key? key,
     required this.docId,
+    required this.tabunganId,
+    required this.target,
+    required this.biaya_terkumpul,
   }) : super(key: key);
 
   var estimasi_hitung;
@@ -70,7 +80,12 @@ class DetailTabunganWidget extends StatelessWidget {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return const modalTambahTabungan();
+                        return modalTambahTabungan(
+                          target: target,
+                          tabunganId: tabunganId,
+                          biayaTerkumpul: biaya_terkumpul,
+                          docId: docId,
+                        );
                       },
                     );
                   },
@@ -128,7 +143,9 @@ class DetailTabunganWidget extends StatelessWidget {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return const modalHapusTabungan();
+                        return modalHapusTabungan(
+                          docId: docId,
+                        );
                       },
                     );
                   },
@@ -173,7 +190,8 @@ class DetailTabunganWidget extends StatelessWidget {
                               // location.reload();
                               // refresh the app
                               // Get.offAll(() => HomePageView(
-                              Navigator.pop(context, true);
+                              // Navigator.pop(context, true);
+                              Restart.restartApp(webOrigin: AppPages.INITIAL);
                             },
                             icon: const Icon(UniconsLine.angle_left_b),
                           ),
@@ -191,11 +209,11 @@ class DetailTabunganWidget extends StatelessWidget {
                         // convert data to map
                         estimasi_hitung =
                             data['target_tabungan'] / data['nominal_pengisian'];
-                        percent = data['nominal_pengisian'] /
+                        percent = data['biaya_terkumpul'] /
                             data['target_tabungan'] *
                             100;
                         var kurang =
-                            data['target_tabungan'] - data['nominal_pengisian'];
+                            data['target_tabungan'] - data['biaya_terkumpul'];
                         print(data);
                         return Padding(
                           padding: const EdgeInsets.only(top: 8),
@@ -471,7 +489,7 @@ class DetailTabunganWidget extends StatelessWidget {
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  historyNabung(docId: docId),
+                  historyNabung(docId: docId, tabunganId: tabunganId),
                 ],
               ),
             ),
@@ -760,6 +778,7 @@ class DetailTabunganWidget extends StatelessWidget {
                   ),
                   historyNabung(
                     docId: docId,
+                    tabunganId: tabunganId,
                   ),
                 ],
               ),

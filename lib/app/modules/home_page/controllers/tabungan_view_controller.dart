@@ -15,6 +15,7 @@ class TestController extends GetxController {
     await FirebaseFirestore.instance
         .collection('tabungan')
         .orderBy('dibuat')
+        .where('status', isEqualTo: 'aktif')
         .where('user_email', isEqualTo: user.email!)
         .get()
         .then((QuerySnapshot) {

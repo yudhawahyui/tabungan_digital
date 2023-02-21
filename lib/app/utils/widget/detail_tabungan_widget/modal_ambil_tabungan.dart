@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:restart_app/restart_app.dart';
+import 'package:tabungan_digital/app/routes/app_pages.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
+import 'package:tabungan_digital/app/utils/widget/controller/deleteTabunganController.dart';
+import 'package:tabungan_digital/crud.dart';
 
 class modalAmbilTabungan extends StatelessWidget {
   const modalAmbilTabungan({
@@ -40,7 +44,7 @@ class modalAmbilTabungan extends StatelessWidget {
               ),
               // Form input nominal
               const TextField(
-                obscureText: true,
+                obscureText: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -75,7 +79,7 @@ class modalAmbilTabungan extends StatelessWidget {
               ),
               // form input keterangan
               const TextField(
-                obscureText: true,
+                obscureText: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -155,9 +159,27 @@ class modalAmbilTabungan extends StatelessWidget {
 }
 
 class modalTambahTabungan extends StatelessWidget {
-  const modalTambahTabungan({
+  var tabunganId;
+  var biayaTerkumpul;
+  var target;
+  var docId;
+
+  // cpnstructor
+  modalTambahTabungan({
     Key? key,
+    this.tabunganId,
+    this.biayaTerkumpul,
+    this.target,
+    this.docId,
   }) : super(key: key);
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final _keterangan = TextEditingController();
+  final _nominal = TextEditingController();
+
+  // create _id form now date time to int
+  var _id = DateTime.now().millisecondsSinceEpoch;
 
   @override
   Widget build(BuildContext context) {
@@ -176,130 +198,150 @@ class modalTambahTabungan extends StatelessWidget {
         height: Get.height * 0.3,
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Tambah Tabungan',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: AppColors.white,
-                  fontWeight: FontWeight.bold,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Tambah Tabungan',
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: AppColors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: Get.height * 0.02,
-              ),
-              // Form input nominal
-              const TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                    borderSide: BorderSide(
-                      color: AppColors.primaryBg,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                    borderSide: BorderSide(
-                      color: AppColors.white,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                    borderSide: BorderSide(
-                      color: AppColors.primaryBg,
-                    ),
-                  ),
-                  labelText: 'Nominal',
-                  labelStyle: TextStyle(color: AppColors.white),
+                SizedBox(
+                  height: Get.height * 0.02,
                 ),
-              ),
-              SizedBox(
-                height: Get.height * 0.02,
-              ),
-              // form input keterangan
-              const TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                    borderSide: BorderSide(
-                      color: AppColors.primaryBg,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                    borderSide: BorderSide(
-                      color: AppColors.white,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                    borderSide: BorderSide(
-                      color: AppColors.primaryBg,
-                    ),
-                  ),
-                  labelText: 'Keterangan',
-                  labelStyle: TextStyle(color: AppColors.white),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
+                // Form input nominal
+                TextFormField(
+                  controller: _nominal,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
+                      borderSide: BorderSide(
+                        color: AppColors.primaryBg,
                       ),
                     ),
-                    child: const Text(
-                      'Simpan',
-                      style: TextStyle(
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
+                      borderSide: BorderSide(
                         color: AppColors.white,
-                        fontSize: 16,
                       ),
                     ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
+                      borderSide: BorderSide(
+                        color: AppColors.primaryBg,
+                      ),
+                    ),
+                    labelText: 'Nominal',
+                    labelStyle: TextStyle(color: AppColors.white),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
+                ),
+                SizedBox(
+                  height: Get.height * 0.02,
+                ),
+                // form input keterangan
+                TextFormField(
+                  controller: _keterangan,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
+                      borderSide: BorderSide(
+                        color: AppColors.primaryBg,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
+                      borderSide: BorderSide(
+                        color: AppColors.white,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
+                      borderSide: BorderSide(
+                        color: AppColors.primaryBg,
+                      ),
+                    ),
+                    labelText: 'Keterangan',
+                    labelStyle: TextStyle(color: AppColors.white),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          var response = await FirebaseCrud.addSaldoTabungan(
+                              recordId: _id.toString(),
+                              tabunganId: tabunganId,
+                              nominal: int.parse(_nominal.text),
+                              keterangan: _keterangan.text,
+                              status: 'tabung',
+                              tanggal: DateTime.now().toString(),
+                              biaya_terkumpul: biayaTerkumpul,
+                              docId: docId,
+                              target: target);
+                          // update data
+                          Restart.restartApp(webOrigin: AppPages.INITIAL);
+                        }
+                      },
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                      ),
+                      child: const Text(
+                        'Simpan',
+                        style: TextStyle(
+                          color: AppColors.white,
+                          fontSize: 16,
                         ),
                       ),
                     ),
-                    child: const Text(
-                      'Batal',
-                      style: TextStyle(
-                        color: AppColors.danger,
-                        fontSize: 16,
+                    TextButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                      ),
+                      child: const Text(
+                        'Batal',
+                        style: TextStyle(
+                          color: AppColors.danger,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -308,12 +350,17 @@ class modalTambahTabungan extends StatelessWidget {
 }
 
 class modalHapusTabungan extends StatelessWidget {
-  const modalHapusTabungan({
+  var docId;
+
+  // constructor
+  modalHapusTabungan({
     Key? key,
+    required this.docId,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    DeleteTabungan deleteTabungan = Get.put(DeleteTabungan());
     return Dialog(
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -348,7 +395,9 @@ class modalHapusTabungan extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.back();
+                    },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(
                         RoundedRectangleBorder(
@@ -366,7 +415,10 @@ class modalHapusTabungan extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      Get.back();
+                      print('delete');
+                      DeleteTabungan controller = Get.find();
+                      controller.deleteDocument(docId);
+                      print('delete done');
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(

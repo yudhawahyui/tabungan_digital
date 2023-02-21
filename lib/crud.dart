@@ -6,6 +6,7 @@ import 'package:tabungan_digital/response.dart';
 
 final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 final CollectionReference _Collection = _firestore.collection('tabungan');
+final CollectionReference _RecordCollection = _firestore.collection('record');
 
 class FirebaseCrud {
   static Future<Responseses> addTabungan({
@@ -53,6 +54,100 @@ class FirebaseCrud {
       // Get.snackbar('Error', 'Tabungan gagal ditambahkan');
       // response.code = 400;
       // response.message = 'Tabungan gagal ditambahkan';
+    });
+    // return back to home page;
+    return response;
+  }
+
+  static Future<Responseses> addSaldoTabungan(
+      {required String recordId,
+      required String tabunganId,
+      required int nominal,
+      required String keterangan,
+      required String status,
+      required String tanggal,
+      required String docId,
+      required int target,
+      required int biaya_terkumpul}) async {
+    Responseses response = Responseses();
+    DocumentReference documentReferencer = _RecordCollection.doc();
+
+    Map<String, dynamic> data = <String, dynamic>{
+      "record_id": recordId,
+      "tabungan_id": tabunganId,
+      "nominal": nominal,
+      "keterangan": keterangan,
+      "status": status,
+      "tanggal": tanggal,
+    };
+
+    print(data);
+
+    var result = await documentReferencer
+        .set(data)
+        .whenComplete(() => {
+              // snack bar
+              Get.snackbar('Success', 'Tabungan berhasil ditambahkan'),
+              response.code = 200,
+              response.message = 'Tabungan berhasil ditambahkan',
+            })
+        .catchError((e) {
+      print(e.toString());
+      // Get.snackbar('Error', 'Tabungan gagal ditambahkan');
+      // response.code = 400;
+      // response.message = 'Tabungan gagal ditambahkan';
+    });
+    // return back to home page;
+    // send result nominal to update tabungan
+
+    updateTabungan(
+        biaya_terkumpul: biaya_terkumpul,
+        docId: docId,
+        tabungan_id: tabunganId,
+        target: target,
+        nominal: data['nominal']);
+    return response;
+  }
+
+  static Future<Responseses> updateTabungan({
+    String? tabungan_id,
+    String? docId,
+    int? target,
+    int? biaya_terkumpul,
+    int? nominal,
+  }) async {
+    var status = 'tabung';
+    var biaya = biaya_terkumpul! + nominal!;
+
+    if (biaya >= target!) {
+      // update status tabungan
+      status = 'tercapai';
+    }
+
+    Responseses response = Responseses();
+    DocumentReference documentReferencer = _Collection.doc(docId);
+
+    Map<String, dynamic> data = <String, dynamic>{
+      "target_tabungan": target,
+      "biaya_terkumpul": biaya,
+      "status": status,
+    };
+
+    print(data);
+
+    var result = await documentReferencer
+        .update(data)
+        .whenComplete(() => {
+              // snack bar
+              Get.snackbar('Success', 'Tabungan berhasil diupdate'),
+              response.code = 200,
+              response.message = 'Tabungan berhasil diupdate',
+            })
+        .catchError((e) {
+      print(e.toString());
+      Get.snackbar('Error', 'Tabungan gagal diupdate');
+      response.code = 400;
+      response.message = 'Tabungan gagal diupdate';
     });
     // return back to home page;
     return response;

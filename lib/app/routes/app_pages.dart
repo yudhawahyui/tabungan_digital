@@ -74,6 +74,9 @@ class AppPages {
       name: _Paths.DETAIL_TABUNGAN_PAGE,
       page: () => DetailTabunganPageView(
         docId: Get.arguments,
+        tabunganId: Get.arguments,
+        biayaTerkumpul: Get.arguments,
+        target: Get.arguments,
       ),
       binding: DetailTabunganPageBinding(),
       transition: Transition.fadeIn,

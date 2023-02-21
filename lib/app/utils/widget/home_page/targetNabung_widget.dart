@@ -33,7 +33,7 @@ class TargetNabung extends StatelessWidget {
         estimasi_hitung =
             tabunganController.tabunganList[index].target_tabungan /
                 tabunganController.tabunganList[index].nominal_pengisian;
-        percent = tabunganController.tabunganList[index].nominal_pengisian /
+        percent = tabunganController.tabunganList[index].biaya_terkumpul /
             tabunganController.tabunganList[index].target_tabungan *
             100;
         return Container(

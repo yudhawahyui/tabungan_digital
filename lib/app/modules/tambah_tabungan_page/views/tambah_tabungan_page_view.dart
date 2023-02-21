@@ -2,11 +2,12 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:tabungan_digital/app/modules/home_page/controllers/tabungan_view_controller.dart';
 import 'package:tabungan_digital/app/modules/home_page/views/home_page_view.dart';
+import 'package:tabungan_digital/app/routes/app_pages.dart';
 import 'package:tabungan_digital/app/utils/style/AppColors.dart';
 import 'package:tabungan_digital/crud.dart';
 import 'package:unicons/unicons.dart';
@@ -316,6 +317,8 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                                             _nominal_pengisian
                                                                 .text));
                                             // update data
+                                            Restart.restartApp(
+                                                webOrigin: AppPages.INITIAL);
                                             Get.to(
                                               () => HomePageView(
                                                 email: _user_email.text,

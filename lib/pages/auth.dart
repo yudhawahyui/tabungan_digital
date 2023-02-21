@@ -34,7 +34,7 @@ class AuthController extends GetxController {
     if (user == null) {
       print("Login Page");
       Get.offAll(
-        () => const LoginPageView(),
+        () => const WellcomePageView(),
       );
     } else {
       Get.offAll(

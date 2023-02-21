@@ -8,12 +8,18 @@ import '../controllers/detail_tabungan_page_controller.dart';
 
 class DetailTabunganPageView extends GetView<DetailTabunganPageController> {
   String docId;
+  String tabunganId;
+  var target;
+  var biayaTerkumpul;
+
   DetailTabunganPageView({
     Key? key,
     required this.docId,
+    required this.tabunganId,
+    required this.target,
+    required this.biayaTerkumpul,
   }) : super(key: key);
   // get parameter
-
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +27,9 @@ class DetailTabunganPageView extends GetView<DetailTabunganPageController> {
       body: SafeArea(
         child: DetailTabunganWidget(
           docId: docId,
+          tabunganId: tabunganId,
+          target: target,
+          biaya_terkumpul: biayaTerkumpul,
         ),
       ),
     );
