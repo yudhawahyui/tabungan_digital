@@ -45,6 +45,7 @@ class modalAmbilTabungan extends StatelessWidget {
               // Form input nominal
               const TextField(
                 obscureText: false,
+                style: TextStyle(color: AppColors.white),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -80,6 +81,7 @@ class modalAmbilTabungan extends StatelessWidget {
               // form input keterangan
               const TextField(
                 obscureText: false,
+                style: TextStyle(color: AppColors.white),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
