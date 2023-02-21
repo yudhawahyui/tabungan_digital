@@ -23,7 +23,6 @@ class historyNabung extends StatelessWidget {
         Get.put(TabunganList(tabunganId: tabunganId));
 
     // print the data
-    print(tabunganController.tabunganList);
     return Container(
       height: Get.height * 0.28,
       margin: const EdgeInsets.only(
@@ -35,6 +34,8 @@ class historyNabung extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Obx(() {
+        print('this bruh');
+        print(tabunganController.tabunganList);
         if (tabunganController.tabunganList.isEmpty) {
           return Center(
             child: Column(

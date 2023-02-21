@@ -108,7 +108,12 @@ class DetailTabunganWidget extends StatelessWidget {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return const modalAmbilTabungan();
+                        return modalAmbilTabungan(
+                          biayaTerkumpul: biaya_terkumpul,
+                          docId: docId,
+                          tabunganId: tabunganId,
+                          target: target,
+                        );
                       },
                     );
                   },

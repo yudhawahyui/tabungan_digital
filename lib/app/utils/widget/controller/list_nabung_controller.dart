@@ -24,6 +24,7 @@ class TabunganList extends GetxController {
         .collection('record')
         .orderBy('record_id')
         .where('tabungan_id', isEqualTo: tabunganId)
+        .where('validator', isEqualTo: 'valid')
         .get()
         .then((QuerySnapshot) {
       QuerySnapshot.docs.forEach((element) {
@@ -36,6 +37,7 @@ class TabunganList extends GetxController {
             nominal: element['nominal'],
             tanggal: element['tanggal'],
             docId: element.id,
+            validator: element['validator'],
           ),
         );
       });
@@ -77,6 +79,7 @@ class TabunganList extends GetxController {
             nominal: tabungan['nominal'],
             tanggal: tabungan['tanggal'],
             docId: tabungan.id,
+            validator: tabungan['validator'],
           ));
         }
 
