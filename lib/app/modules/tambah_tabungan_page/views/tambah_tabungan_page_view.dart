@@ -436,6 +436,9 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                                     onPressed: () {
                                                       // pass string "harian" to rencana controller
                                                       _rencana = "harian";
+                                                      Get.snackbar(
+                                                          'Rencana Pengisian',
+                                                          'Di setting menjadi ${_rencana}');
                                                     },
                                                     child: const Text('Harian'),
                                                   ),
@@ -460,7 +463,12 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                                                 .circular(5),
                                                       ),
                                                     ),
-                                                    onPressed: () {},
+                                                    onPressed: () {
+                                                      _rencana = "bulanan";
+                                                      Get.snackbar(
+                                                          'Rencana Pengisian',
+                                                          'Di setting menjadi ${_rencana}');
+                                                    },
                                                     child:
                                                         const Text('Bulanan'),
                                                   ),
@@ -568,13 +576,10 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                               } else {
                                                 Get.snackbar("Berhasil",
                                                     "Berhasil menambahkan tabungan");
+                                                Restart.restartApp(
+                                                    webOrigin:
+                                                        AppPages.INITIAL);
                                               }
-
-                                              Get.to(
-                                                () => HomePageView(
-                                                  email: _user_email.text,
-                                                ),
-                                              );
                                             }
                                           },
                                           child: const Text('Simpan'),
