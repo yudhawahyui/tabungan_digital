@@ -570,16 +570,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                                           int.parse(
                                                               _nominal_pengisian
                                                                   .text));
-                                              if (response != 200) {
-                                                Get.snackbar("Gagal",
-                                                    "Gagal menambahkan tabungan");
-                                              } else {
-                                                Get.snackbar("Berhasil",
-                                                    "Berhasil menambahkan tabungan");
-                                                Restart.restartApp(
-                                                    webOrigin:
-                                                        AppPages.INITIAL);
-                                              }
+                              
                                             }
                                           },
                                           child: const Text('Simpan'),

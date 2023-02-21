@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:restart_app/restart_app.dart';
+import 'package:tabungan_digital/app/routes/app_pages.dart';
 import 'package:tabungan_digital/app/utils/widget/detail_tabungan_widget/modal_ambil_tabungan.dart';
 import 'package:tabungan_digital/custom_database.dart';
 import 'package:tabungan_digital/response.dart';
@@ -57,6 +59,8 @@ class FirebaseCrud {
       // response.code = 400;
       // response.message = 'Tabungan gagal ditambahkan';
     });
+
+    Restart.restartApp(webOrigin: AppPages.INITIAL);
     // return back to home page;
     return response;
   }
