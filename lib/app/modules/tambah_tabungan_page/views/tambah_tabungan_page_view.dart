@@ -343,47 +343,6 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              GestureDetector(
-                                onTap: () {
-                                  controllerTabungan
-                                      .getImage(ImageSource.gallery);
-                                },
-                                child: Obx(
-                                  () => controllerTabungan
-                                              .selectedImagePath.value ==
-                                          ''
-                                      ? Container(
-                                          width: Get.width * .5,
-                                          height: Get.height * .3,
-                                          decoration: BoxDecoration(
-                                            color: AppColors.primaryBg,
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
-                                          child: Image.file(
-                                              File(
-                                                controllerTabungan
-                                                    .selectedImagePath.value,
-                                              ),
-                                              fit: BoxFit.cover),
-                                        )
-                                      : Container(
-                                          width: Get.width * .5,
-                                          height: Get.height * .3,
-                                          decoration: BoxDecoration(
-                                            color: AppColors.primaryBg,
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                          ),
-                                          child: Image.file(
-                                              File(
-                                                controllerTabungan
-                                                    .selectedImagePath.value,
-                                              ),
-                                              fit: BoxFit.cover),
-                                        ),
-                                ),
-                              ),
                               Container(
                                 width: Get.width * 1,
                                 height: Get.height * .6,
