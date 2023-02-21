@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:tabungan_digital/app/modules/home_page/views/home_page_view.dart';
-import 'package:tabungan_digital/app/modules/login_page/views/login_page_view.dart';
+import 'package:restart_app/restart_app.dart';
+import 'package:tabungan_digital/app/routes/app_pages.dart';
+import 'package:tabungan_digital/pages/auth.dart';
 
 class DeleteTabungan extends GetxController {
+  AuthController authController = Get.put(AuthController());
+
   Future<void> deleteDocument(String docId) async {
     CollectionReference collection =
         FirebaseFirestore.instance.collection('tabungan');
@@ -15,8 +18,8 @@ class DeleteTabungan extends GetxController {
 
     // getBack with snackbar data berhasil dihapus
     // goto Homepage
-    Get.offAll(() => LoginPageView());
     Get.snackbar('Data berhasil dihapus', 'Data berhasil dihapus',
         snackPosition: SnackPosition.BOTTOM);
+    Restart.restartApp(webOrigin: AppPages.INITIAL);
   }
 }

@@ -458,10 +458,8 @@ class modalHapusTabungan extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      print('delete');
                       DeleteTabungan controller = Get.find();
                       controller.deleteDocument(docId);
-                      print('delete done');
                     },
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all(

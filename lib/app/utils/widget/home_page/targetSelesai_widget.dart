@@ -36,14 +36,14 @@ class TargetSelesai extends StatelessWidget {
                       AspectRatio(
                         aspectRatio: 500 / 250,
                         child: Container(
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
                               image: NetworkImage(
-                                'https://source.unsplash.com/random/500x250?keyboard-mechanical',
+                                'https://source.unsplash.com/random/500x250?${tabunganController.tabunganList[index].nama_tabungan}',
                               ),
                             ),
-                            borderRadius: BorderRadius.all(
+                            borderRadius: const BorderRadius.all(
                               Radius.circular(5),
                             ),
                           ),
