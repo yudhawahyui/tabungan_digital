@@ -40,7 +40,7 @@ class modalAmbilTabungan extends StatelessWidget {
               ),
               // Form input nominal
               const TextField(
-                obscureText: true,
+                style: TextStyle(color: AppColors.white),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -75,7 +75,7 @@ class modalAmbilTabungan extends StatelessWidget {
               ),
               // form input keterangan
               const TextField(
-                obscureText: true,
+                style: TextStyle(color: AppColors.white),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -193,7 +193,7 @@ class modalTambahTabungan extends StatelessWidget {
               ),
               // Form input nominal
               const TextField(
-                obscureText: true,
+                style: TextStyle(color: AppColors.white),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -228,7 +228,7 @@ class modalTambahTabungan extends StatelessWidget {
               ),
               // form input keterangan
               const TextField(
-                obscureText: true,
+                style: TextStyle(color: AppColors.white),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
