@@ -137,7 +137,7 @@ class TargetNabung extends StatelessWidget {
                                   // Nominal nabung di ambil dari database
                                   Text(
                                     "Estimasi : " +
-                                        estimasi_hitung.toStringAsFixed(2),
+                                        estimasi_hitung.toStringAsFixed(0),
                                     style: const TextStyle(
                                       color: AppColors.white,
                                       fontSize: 16,
@@ -185,7 +185,7 @@ class TargetNabung extends StatelessWidget {
                             ),
                             alignment: Alignment.center,
                             child: Text(
-                              percent.toStringAsFixed(2) + "%",
+                              percent.toStringAsFixed(0) + "%",
                               style: const TextStyle(
                                 color: AppColors.white,
                               ),

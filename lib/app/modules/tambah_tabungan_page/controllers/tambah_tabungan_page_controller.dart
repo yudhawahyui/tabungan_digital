@@ -7,7 +7,6 @@ class TambahTabunganPageController extends GetxController {
   var selectedImagePath = ''.obs;
   var selectedImageSize = ''.obs;
   final count = 0.obs;
-
   @override
   void onInit() {
     super.onInit();

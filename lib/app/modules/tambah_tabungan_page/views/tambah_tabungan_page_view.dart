@@ -39,7 +39,7 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
     final user = FirebaseAuth.instance.currentUser!;
     // create id from timestamp now convert it to string
     final _id = now.millisecondsSinceEpoch.toInt();
-
+    bool click = true;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -147,24 +147,23 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                                   MainAxisAlignment.spaceEvenly,
                                               children: [
                                                 TextButton(
-                                                  style: TextButton.styleFrom(
+                                                  style: ButtonStyle(
                                                     foregroundColor:
-                                                        AppColors.white,
-                                                    backgroundColor:
-                                                        AppColors.primaryBg,
+                                                        MaterialStateProperty
+                                                            .all<Color>(
+                                                                AppColors
+                                                                    .white),
                                                     alignment:
                                                         AlignmentDirectional
                                                             .center,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                    ),
                                                   ),
                                                   onPressed: () {
                                                     // pass string "harian" to rencana controller
                                                     _rencana = "harian";
+
+                                                    Get.snackbar(
+                                                        'Rencana Pengisian',
+                                                        'Di setting menjadi ${_rencana}');
                                                   },
                                                   child: const Text('Harian'),
                                                 ),
@@ -191,6 +190,9 @@ class TambahTabunganPageView extends GetView<TambahTabunganPageController> {
                                                   ),
                                                   onPressed: () {
                                                     _rencana = "bulanan";
+                                                    Get.snackbar(
+                                                        'Rencana Pengisian',
+                                                        'Di setting menjadi ${_rencana}');
                                                   },
                                                   child: const Text('Bulanan'),
                                                 ),
